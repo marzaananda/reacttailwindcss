@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-// import Home from "./components/Home";
+import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import TypingEffect from './TypingEffect';
 // import AboutMe from './components/AboutMe';
@@ -12,8 +12,8 @@ const App: React.FC = () => {
   return (
     <div>
       <Navbar />
-      {/* <Home />
-      <AboutMe />
+      <Home />
+      {/* <AboutMe />
       <Projects />
       <Footer /> */}
     </div>
@@ -21,3 +21,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
