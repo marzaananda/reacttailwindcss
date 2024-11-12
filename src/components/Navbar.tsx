@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
 import TypingEffect from '../TypingEffect';
+import useVideoVisibility from '../useVideoVisibility'
 
-const Navbar: React.FC = () => {
+
+function Navbar() {
+  const videoRef = useVideoVisibility('navbarVideo');
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  const handleScrollToSection = () => {
+    const targetSection = document.getElementById('home');
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="relative h-screen w-full">
       {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        id="navbarVideo"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/vid01.mp4" type="video/mp4" />
@@ -50,8 +62,7 @@ const Navbar: React.FC = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'}
-                  />
+                    d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'} />
                 </svg>
               </button>
             </div>
@@ -80,15 +91,16 @@ const Navbar: React.FC = () => {
             headingText="Welcome to My Website"
             paragraphText="Kamu punya cara yang unik untuk menghargai masa lalu."
             speed={100}
-            delayBetweenTexts={1500}
-          />
-          <button className="px-6 py-2 mt-4 bg-black text-white transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">
+            delayBetweenTexts={1500} />
+          <button 
+          onClick={handleScrollToSection} 
+          className="px-6 py-2 mt-4 bg-black text-white transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">
             Mau lihat?
           </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Navbar;
