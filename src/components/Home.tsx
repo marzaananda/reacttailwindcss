@@ -9,7 +9,7 @@ const Home : React.FC =() => {
         <div id="home" className="flex flex-col lg:flex-row items-center justify-center min-h-screen bg-gray-100 p-8 space-y-8 lg:space-y-0 lg:space-x-8">
       
         {/* Section Kiri - Teks Besar */}
-        <div className="flex-1 text-center lg:text-left">
+        <div className="flex-1 container mx-auto px-6 py-10 text-center lg:text-left ">
           <h1 className="text-5xl lg:text-7xl font-bold text-black tracking-wide">
             TONTON SEKARANG
           </h1>
@@ -22,7 +22,7 @@ const Home : React.FC =() => {
         </div>
         
         {/* Section Kanan - Gambar/Video */}
-        <div className="relative w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 shadow-black-500/40 rounded-lg overflow-hidden">
+        <div className="mt-8 sm:mt-12 flex justify-center">
         <video
         ref={videoRef}
         autoPlay
@@ -30,7 +30,7 @@ const Home : React.FC =() => {
         muted
         playsInline
         id="homeVideo"
-        className=""
+        className="w-full max-w-xl sm:max-w-sm md:max-w-lg lg:max-w-xl shadow-xl rounded"
       >
         <source src="./public/ipa1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
