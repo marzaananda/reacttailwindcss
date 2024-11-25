@@ -69,7 +69,7 @@ function Navbar() {
 
             {/* Navbar links for desktop */}
             <div className="hidden sm:flex space-x-4">
-              <a href="#home" className="text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">Home</a>
+              <a href="#navbar" className="text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">Home</a>
               <a href="#about" className="text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">About</a>
               <a href="#memori" className="text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">Memori</a>
             </div>
@@ -86,7 +86,7 @@ function Navbar() {
         </nav>
 
         {/* Main Content */}
-        <div className="font-nunito text-white-900 flex flex-col items-center justify-center min-h-screen">
+        <div id='navbar' className="font-nunito text-white-900 flex flex-col items-center justify-center min-h-screen">
           <TypingEffect
             headingText="Welcome to My Website"
             paragraphText="Kamu punya cara yang unik untuk menghargai masa lalu."
