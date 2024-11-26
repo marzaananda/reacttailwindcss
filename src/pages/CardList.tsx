@@ -34,8 +34,8 @@ const CardList: React.FC = () => {
       <div className="container mx-auto">
         {/* Header Section */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">ARTIKEL TERBARU</h2>
-          <button className="px-4 py-2 text-sm text-black hover:bg-red-600 rounded-lg transition">
+          <h2 className="font-quantico text-2xl font-bold">ARTIKEL TERBARU</h2>
+          <button className="font-quantico px-4 py-2 text-sm text-black hover:bg-red-600 rounded-lg transition">
             Lihat Semua Artikel
           </button>
         </div>

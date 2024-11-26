@@ -10,7 +10,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ image, title, category, date, description }) => {
   return (
-    <div className="relative w-full md:w-[300px] bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 transition-transform">
+    <div className="relative w-full md:w-[300px] bg-white shadow-md overflow-hidden hover:scale-105 transition-transform">
       {/* Image Section */}
       <div className="relative h-[180px] w-full overflow-hidden">
         <img src={image} alt={title} className="object-cover w-full h-full" />

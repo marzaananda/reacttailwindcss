@@ -13,10 +13,10 @@ const Home : React.FC =() => {
           <h1 className="font-quantico text-5xl lg:text-7xl font-bold text-black tracking-wide">
             TONTON SEKARANG
           </h1>
-          <p className="mt-4 text-gray-700 text-lg">
+          <p className="font-quantico mt-4 text-gray-700 text-lg">
             Kamu punya cara yang unik untuk menghargai masa lalu.
           </p>
-          <a href="#"><button className="px-6 py-2 mt-4 bg-black text-white transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">
+          <a href="#"><button className="font-quantico px-6 py-2 mt-4 bg-black text-white transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">
             Mau lihat?
           </button></a>
         </div>

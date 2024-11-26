@@ -52,12 +52,12 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   return (
     <div className="flex flex-col items-center">
       <h1
-        className={`text-5xl font-light font-nunito ${isTyping ? 'border-r-2 border-white-900 animate-blink' : ''}`}
+        className={`text-5xl font-light font-quantico ${isTyping ? 'border-r-2 border-white-900 animate-blink' : ''}`}
       >
         {displayedHeading}
       </h1>
       {!isTypingHeading && (
-        <p className={`text-lg font-nunito mt-4 ${isTyping ? 'border-r-2 border-white-900 animate-blink' : ''}`}>
+        <p className={`text-lg font-quantico mt-4 ${isTyping ? 'border-r-2 border-white-900 animate-blink' : ''}`}>
           {displayedParagraph}
         </p>
       )}
