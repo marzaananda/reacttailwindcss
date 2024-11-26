@@ -10,7 +10,7 @@ const Home : React.FC =() => {
       
         {/* Section Kiri - Teks Besar */}
         <div className="flex-1 container mx-auto px-6 py-10 text-center lg:text-left ">
-          <h1 className="text-5xl lg:text-7xl font-bold text-black tracking-wide">
+          <h1 className="font-quantico text-5xl lg:text-7xl font-bold text-black tracking-wide">
             TONTON SEKARANG
           </h1>
           <p className="mt-4 text-gray-700 text-lg">

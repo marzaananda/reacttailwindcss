@@ -10,9 +10,10 @@ export default {
         },
       },
       fontFamily: {
-        nunito: ['nunito', 'sans-serif'],
+        nunito: ['Nunito', 'sans-serif'], // Tetap ada
+        quantico: ['Quantico', 'sans-serif'], // Tambahkan Quantico
       },
     },
   },
   plugins: [],
-}
+};

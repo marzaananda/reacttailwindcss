@@ -5,6 +5,10 @@ import Navbar from "./components/Navbar";
 import TypingEffect from './TypingEffect';
 import ImageSlider from './components/ImageSlider';
 import CardList from "./pages/CardList";
+import '@fontsource/quantico'; // Default
+import '@fontsource/quantico/400.css'; // Regular
+import '@fontsource/quantico/700.css'; // Bold
+
 
 
 // import AboutMe from './components/AboutMe';
