@@ -8,6 +8,7 @@ import CardList from "./pages/CardList";
 import '@fontsource/quantico'; // Default
 import '@fontsource/quantico/400.css'; // Regular
 import '@fontsource/quantico/700.css'; // Bold
+import Page from './components/PageHome';
 
 
 
@@ -22,7 +23,7 @@ const App: React.FC = () => {
     <Navbar />
     <Home />
     <CardList />
-
+    <Page />
     </div>
   );
 };
