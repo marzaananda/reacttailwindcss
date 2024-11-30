@@ -21,9 +21,9 @@ const App: React.FC = () => {
   return (
     <div>
     <Navbar />
-    <Home />
     <CardList />
     <Page />
+    <Home />
     </div>
   );
 };

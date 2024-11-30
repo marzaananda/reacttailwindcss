@@ -70,7 +70,7 @@ function Navbar() {
             {/* Navbar links for desktop */}
             <div className="hidden sm:flex space-x-4">
               <a href="#navbar" className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">Home</a>
-              <a href="#about" className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">About</a>
+              <a href="#page-home" className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">About</a>
               <a href="#memori" className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">Memori</a>
             </div>
           </div>
@@ -79,7 +79,7 @@ function Navbar() {
           {isMenuOpen && (
             <div className="sm:hidden absolute top-16 right-6 bg-gray-800 bg-opacity-90 rounded-md shadow-lg py-2">
               <a href="#home" className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded">Home</a>
-              <a href="#about" className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded">About</a>
+              <a href="#page-home" className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded">About</a>
               <a href="#memori" className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded">Memori</a>
             </div>
           )}
@@ -88,7 +88,7 @@ function Navbar() {
         {/* Main Content */}
         <div id='navbar' className="font-quantico text-white-900 flex flex-col items-center justify-center min-h-screen">
           <TypingEffect
-            headingText="Welcome to My Website"
+            headingText="Selamat datang"
             paragraphText="Kamu punya cara yang unik untuk menghargai masa lalu."
             speed={100}
             delayBetweenTexts={1500} />
