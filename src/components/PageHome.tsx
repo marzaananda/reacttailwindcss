@@ -61,7 +61,7 @@ const PageHome: React.FC = () => {
 
 {/* Box responsif */}
 <motion.div
-  className="w-full md:w-[500px] h-auto md:h-[300px] bg-white bg-opacity-10 p-4 md:p-6  rounded-md flex items-center"
+  className="w-full md:w-[500px] h-auto md:h-[300npm px] bg-white bg-opacity-10 p-4 md:p-6  rounded-md flex items-center"
   initial={{ opacity: 0, x: -50 }}
   animate={{ opacity: 1, x: 0 }}
   transition={{ duration: 1.5 }}

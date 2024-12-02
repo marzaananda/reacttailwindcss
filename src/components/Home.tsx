@@ -1,5 +1,6 @@
 import React from "react";
 import useVideoVisibility from '../useVideoVisibility'
+import LazyVideo from "../LazyVideo";
 
 
 const Home : React.FC =() => {
@@ -23,18 +24,11 @@ const Home : React.FC =() => {
         
         {/* Section Kanan - Gambar/Video */}
         <div className="mt-8 sm:mt-12 flex justify-center">
-        <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        id="homeVideo"
-        className="w-full max-w-xl sm:max-w-sm md:max-w-lg lg:max-w-xl shadow-xl rounded"
-      >
-        <source src="./public/ipa1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        <LazyVideo
+          videoId="homeVideo"
+          videoSrc="/ipa1.mp4"
+          className="w-full max-w-xl sm:max-w-sm md:max-w-lg lg:max-w-xl shadow-xl rounded"
+        />
         </div>
         
       </div>

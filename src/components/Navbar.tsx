@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TypingEffect from '../TypingEffect';
 import useVideoVisibility from '../useVideoVisibility'
+import LazyVideo from "../LazyVideo";
 
 
 function Navbar() {
@@ -21,18 +22,11 @@ function Navbar() {
   return (
     <div className="relative h-screen w-full">
       {/* Video Background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        id="navbarVideo"
+      <LazyVideo
+        videoId="navbarVideo"
+        videoSrc="/Vid01.mp4"
         className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/vid01.mp4" type="video/mp4" />
-
-      </video>
+      />
 
       {/* Overlay and Content */}
       <div className="relative z-10 bg-opacity-50 h-full flex flex-col items-center justify-center text-center text-white">

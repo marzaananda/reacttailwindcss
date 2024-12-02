@@ -1,42 +1,50 @@
 import React from "react";
 import Card from "../components/Card";
-import image1 from "../components/img/waifu gua.png";
-import image2 from "../components/img/poto.jpg";
-import image3 from "../components/img/maxresdefault.jpg";
+import image1 from "../components/img/IMG (1).jpg";
+import image2 from "../components/img/IMG (4).jpg";
+import image3 from "../components/img/IMG (3).jpg";
+import image4 from "../components/img/IMG (5).jpg";
 
 const cardData = [
   {
     image: image1, // Menggunakan gambar lokal
-    title: "JUST ONE MORE // Ep 9: Act III",
-    category: "PEMBARUAN GAME",
-    date: "21/10/2024",
-    description: "Jajaran skin baru, Patch Akhir Tahun, dan masih banyak lagi di act terakhir COLLISION.",
+    title: "PRAKTEK KIMIA XI IPA 1",
+    category: "Kimia",
+    date: "Agustus 2022",
+    description: "beritahu saya jika punya deskripsi",
   },
   {
     image: image2, // Menggunakan gambar lokal
-    title: "Trailer Pengenalan Gameplay Vyse",
-    category: "PEMBARUAN GAME",
-    date: "23/08/2024",
-    description: "Saksikan ahli taktik ulung, Vyse, beraksi sebelum ia rilis di Episode 09: Act II.",
+    title: "STUDY TOUR 2022",
+    category: "Candi Prambanan",
+    date: "5 Oktober 2022",
+    description: "Beritahu saya jika punya deskripsi",
   },
   {
     image: image3, // Menggunakan gambar lokal
-    title: "Catatan Patch VALORANT 9.08",
-    category: "PEMBARUAN GAME",
-    date: "22/10/2024",
-    description: "Pembaruan untuk Fakeout Yoru, ability Gekko, dan Sunset. Baru: Peta TDM Glitch.",
+    title: "STUDY TOUR 2022",
+    category: "Candi Prambanan",
+    date: "5 Oktober 2022",
+    description: "Beritahu saya jika punya deskripsi",
+  },
+  {
+    image: image4, // Menggunakan gambar lokal
+    title: "Praktik Manasik Haji 2023",
+    category: "Manasik Haji",
+    date: "14 Agustus 2023",
+    description: "Beritahu saya jika punya deskripsi",
   },
 ];
 
 const CardList: React.FC = () => {
   return (
-    <div className="bg-gray-100 py-10">
+    <div id="memori" className="bg-gray-100 py-10">
       <div className="container mx-auto">
         {/* Header Section */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="font-quantico text-2xl font-bold">ARTIKEL TERBARU</h2>
+          <h2 className="font-quantico text-2xl font-bold">KENANGAN TERBARU</h2>
           <button className="font-quantico px-4 py-2 text-sm text-black hover:bg-red-600 rounded-lg transition">
-            Lihat Semua Artikel
+            Lihat Semua kenangan
           </button>
         </div>
         {/* Card Section */}
