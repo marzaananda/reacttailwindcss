@@ -17,10 +17,10 @@ const Card: React.FC<CardProps> = ({ image, title, category, date, description }
       </div>
       {/* Content Section */}
       <div className="p-4">
-        <span className="text-red-500 text-xs font-semibold uppercase">{category}</span>
-        <span className="text-gray-500 text-xs ml-2">{date}</span>
-        <h3 className="text-gray-800 font-bold text-md mt-2">{title}</h3>
-        <p className="text-gray-600 text-sm mt-2">{description}</p>
+        <span className="font-quantico text-red-500 text-xs font-semibold uppercase">{category}</span>
+        <span className="font-quantico text-gray-500 text-xs ml-2">{date}</span>
+        <h3 className="font-quantico text-gray-800 font-bold text-md mt-2">{title}</h3>
+        <p className="font-quantico text-gray-600 text-sm mt-2">{description}</p>
       </div>
     </div>
   );

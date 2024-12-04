@@ -48,7 +48,7 @@ const CardList: React.FC = () => {
           </button>
         </div>
         {/* Card Section */}
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="font-quantico flex flex-wrap justify-center gap-6">
           {cardData.map((card, index) => (
             <Card
               key={index}
