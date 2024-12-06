@@ -1,5 +1,6 @@
 import React from "react";
-import Card from "../components/Card";
+import Card from "./Card";
+import { Link } from 'react-router-dom';
 import image1 from "../components/img/IMG (1).jpg";
 import image2 from "../components/img/IMG (4).jpg";
 import image3 from "../components/img/IMG (3).jpg";
@@ -43,9 +44,11 @@ const CardList: React.FC = () => {
         {/* Header Section */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="font-quantico text-2xl font-bold">KENANGAN TERBARU</h2>
+          <Link to="/all-memories">
           <button className="font-quantico px-4 py-2 text-sm text-black hover:bg-red-600 rounded-lg transition">
             Lihat Semua kenangan
           </button>
+          </Link>
         </div>
         {/* Card Section */}
         <div className="font-quantico flex flex-wrap justify-center gap-6">
