@@ -84,7 +84,7 @@ const AllMemories: React.FC = () => {
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">Berita Populer</h2>
           <Link to="/all-memories">
-            <button className="px-4 py-2 text-sm text-black bg-red-600 rounded-lg hover:bg-red-700 transition">
+            <button className="px-4 py-2 text-sm text-black bg-red rounded-lg hover:bg-red-700 transition">
               Lihat Semua Kenangan
             </button>
           </Link>
