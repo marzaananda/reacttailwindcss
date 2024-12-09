@@ -1,20 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg'],
   plugins: [react()],
-  build:{
-    rollupOptions:{
-      output:{
-        manualChunks:undefined
-      }
-    }
+  build: {
+    outDir: 'dist', // Pastikan output ke folder 'dist'
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Jika tidak ingin chunk manual
+      },
+    },
   },
-  server:{
-    headers:{
-      "Cache-Control" : "public, max-age=31536000, immutable",
-    }
-  }
-})
+  server: {
+    headers: {
+      "Cache-Control": "public, max-age=31536000, immutable", // Cache-control header untuk assets
+    },
+  },
+  // Jika kamu menggunakan sub-path atau deployment path lain di Vercel, misalnya: /my-app/
+  base: '/',
+});
