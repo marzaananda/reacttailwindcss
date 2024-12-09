@@ -72,8 +72,8 @@ const AllMemories: React.FC = () => {
       <section className="relative h-[500px] bg-cover bg-center" style={{ backgroundImage: 'url(/hero-image.jpg)' }}>
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="relative z-10 flex flex-col justify-center text-left h-full px-4">
-          <h1 className="text-4xl text- md:text-6xl font-bold mb-4">Berita Terbaru</h1>
-          <p className="text-lg md:text-xl max-w-3xl">
+          <h1 className="font-quantico text-4xl text- md:text-6xl font-bold mb-4">Berita Terbaru</h1>
+          <p className="font-quantico text-lg md:text-xl max-w-3xl">
             Temukan informasi dan kabar terbaru yang menarik untukmu.
           </p>
         </div>
@@ -82,9 +82,9 @@ const AllMemories: React.FC = () => {
       {/* Card List Section */}
       <section className="container mx-auto py-12 px-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">Berita Populer</h2>
+          <h2 className="font-quantico text-2xl md:text-3xl font-bold mb-8">Berita Populer</h2>
           <Link to="/all-memories">
-            <button className="px-4 py-2 text-sm text-black bg-red rounded-lg hover:bg-red-700 transition">
+            <button className="font-quantico px-4 py-2 text-sm text-black bg-red rounded-lg hover:bg-red-700 transition">
               Lihat Semua Kenangan
             </button>
           </Link>
@@ -109,10 +109,6 @@ const AllMemories: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black py-8 text-center">
-        <p className="text-gray-400">© 2024 - Expose One</p>
-      </footer>
     </div>
   );
 };

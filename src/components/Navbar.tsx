@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
@@ -34,7 +41,11 @@ const Navbar: React.FC = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16m-7 6h7'}
+                d={
+                  isMenuOpen
+                    ? "M6 18L18 6M6 6l12 12"
+                    : "M4 6h16M4 12h16m-7 6h7"
+                }
               />
             </svg>
           </button>
@@ -42,24 +53,57 @@ const Navbar: React.FC = () => {
 
         {/* Navbar links for desktop */}
         <div className="hidden sm:flex space-x-4">
-          <a href="#navbar" className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">
+          <button
+            onClick={() => scrollToSection("MainContent")}
+            className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
+          >
             Home
-          </a>
-          <a href="#page-home" className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">
-            About
-          </a>
-          <a href="#memori" className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded">
+          </button>
+          <button
+            onClick={() => scrollToSection("memori")}
+            className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
+          >
             Memori
-          </a>
+          </button>
+          <button
+            onClick={() => scrollToSection("page-home")}
+            className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
+          >
+            About
+          </button>
         </div>
       </div>
 
       {/* Dropdown menu for mobile */}
       {isMenuOpen && (
         <div className="sm:hidden absolute top-16 right-6 bg-gray-800 bg-opacity-90 rounded-md shadow-lg py-2">
-          <a href="#home" className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded">Home</a>
-          <a href="#page-home" className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded">About</a>
-          <a href="#memori" className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded">Memori</a>
+          <button
+            onClick={() => {
+              scrollToSection("page-home");
+              toggleMenu();
+            }}
+            className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
+          >
+            Home
+          </button>
+          <button
+            onClick={() => {
+              scrollToSection("page-home");
+              toggleMenu();
+            }}
+            className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
+          >
+            About
+          </button>
+          <button
+            onClick={() => {
+              scrollToSection("memori");
+              toggleMenu();
+            }}
+            className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
+          >
+            Memori
+          </button>
         </div>
       )}
     </nav>

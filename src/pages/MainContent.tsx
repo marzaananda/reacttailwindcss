@@ -14,7 +14,7 @@ const MainContent: React.FC = () => {
   };
 
   return (
-    <div className="relative h-screen w-full">
+    <div id='MainContent' className="relative h-screen w-full">
       {/* Video Background */}
       <LazyVideo
         videoId="navbarVideo"

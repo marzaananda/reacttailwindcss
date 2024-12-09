@@ -6,13 +6,12 @@ import CardList from './pages/CardList';
 import Page from './pages/PageHome';
 import Footer from './pages/Footer';
 import ImageSlider from './pages/ImageSlider';
-import AllMemories from './pages/other/AllMemories'; // Tambahkan komponen halaman baru
+import AllMemories from './pages/other/AllMemories'; // Halaman All Memories
 import '@fontsource/quantico'; // Default
 import '@fontsource/quantico/400.css'; // Regular
 import '@fontsource/quantico/700.css'; // Bold
 import MainContent from './pages/MainContent';
 
-// App Component
 const App: React.FC = () => {
   return (
     <Router>
@@ -27,17 +26,19 @@ const App: React.FC = () => {
             path="/"
             element={
               <>
-                <MainContent/>
+                <MainContent />
                 <CardList />
                 <Page />
                 <Home />
-                <footer/>
               </>
             }
           />
           {/* Halaman baru untuk "Lihat Semua Kenangan" */}
           <Route path="/all-memories" element={<AllMemories />} />
         </Routes>
+
+        {/* Footer tetap tampil di semua halaman */}
+        <Footer />
       </div>
     </Router>
   );

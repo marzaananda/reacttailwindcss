@@ -1,21 +1,33 @@
 import React from 'react';
+import { FaYoutube, FaGithub, FaInstagram } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-300 w-full h-screen flex items-center">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
-        <div className="slideshow-container w-full h-full relative">
-          {/* Slideshow gambar bisa ditambahkan di sini */}
+    <footer className="bg-gray-100 text-gray-800 py-6">
+      <div className="container mx-auto flex justify-between items-center px-4">
+        {/* Logo Section */}
+        <div className="flex items-center">
+          <img src="/logo.png" alt="Logo" className="h-12" /> {/* Ganti dengan path logo kamu */}
+          <h1 className="font-quantico p-2 font-bold ml-2 text-lg">EXPOSE ONE</h1>
         </div>
-        <div className="flex flex-col justify-center items-start space-y-4 h-full p-8">
-          <h2 className="text-lg font-bold">I’m available for every opportunity!</h2>
-          <p className="text-gray-600">Interested in working with me? Need help on your project? Or just wanna say hi? I’d love to hear you about that.</p>
-          <div className="flex space-x-4">
-            <a href="#" className="text-black hover:text-gray-500"><i className="fab fa-github"></i></a>
-            <a href="#" className="text-black hover:text-gray-500"><i className="fab fa-instagram"></i></a>
-            <a href="#" className="text-black hover:text-gray-500"><i className="fab fa-linkedin"></i></a>
-          </div>
+
+        {/* Social Icons Section */}
+        <div className="flex space-x-4">
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+            <FaYoutube className="w-6 h-6 text-black hover:text-gray-600 transition-colors" />
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <FaGithub className="w-6 h-6 text-black hover:text-gray-600 transition-colors" />
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <FaInstagram className="w-6 h-6 text-black hover:text-gray-600 transition-colors" />
+          </a>
         </div>
+      </div>
+
+      {/* Copyright Section */}
+      <div className="font-quantico text-center mt-4 text-sm text-gray-500">
+        ©Copyright.2022 by Expose One
       </div>
     </footer>
   );
