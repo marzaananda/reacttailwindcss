@@ -79,21 +79,12 @@ const Navbar: React.FC = () => {
         <div className="sm:hidden absolute top-16 right-6 bg-gray-800 bg-opacity-90 rounded-md shadow-lg py-2">
           <button
             onClick={() => {
-              scrollToSection("page-home");
+              scrollToSection("MainContent");
               toggleMenu();
             }}
             className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
           >
             Home
-          </button>
-          <button
-            onClick={() => {
-              scrollToSection("page-home");
-              toggleMenu();
-            }}
-            className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
-          >
-            About
           </button>
           <button
             onClick={() => {
@@ -103,6 +94,15 @@ const Navbar: React.FC = () => {
             className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
           >
             Memori
+          </button>
+          <button
+            onClick={() => {
+              scrollToSection("page-home");
+              toggleMenu();
+            }}
+            className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
+          >
+            About
           </button>
         </div>
       )}
