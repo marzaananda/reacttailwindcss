@@ -17,10 +17,10 @@ const MainContent: React.FC = () => {
     <div id='MainContent' className="relative h-screen w-full">
       {/* Video Background */}
       <LazyVideo
-        videoId="navbarVideo"
-        videoSrc="/Vid01.mp4"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      />
+      videoId="navbarVideo"
+      videoSrc="/Vid01.mp4"  // Menggunakan path relatif dari folder public
+      className="absolute inset-0 w-full h-full object-cover z-0"
+        />
 
       {/* Overlay and Content */}
       <div className="relative z-10 bg-opacity-50 h-full flex flex-col items-center justify-center text-center text-white">

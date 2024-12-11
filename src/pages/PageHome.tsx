@@ -37,7 +37,7 @@ const PageHome: React.FC = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
       style={{
-        backgroundImage: "url('./public/_MG_4692 1.png')", // Ganti dengan URL gambar Anda
+        backgroundImage: "url('./_MG_4692 1.png')", // Ganti dengan URL gambar Anda
         backgroundPosition: "center",
         backgroundSize: "cover", // Pastikan gambar memenuhi container
       }}
