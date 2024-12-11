@@ -100,9 +100,9 @@ const AllMemories: React.FC = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
-                <h3 className="text-lg font-bold mb-2">{article.title}</h3>
-                <p className="text-sm text-white">{article.summary}</p>
-                <Link to={article.link} className="text-red-400 font-semibold hover:underline mt-2 inline-block">Baca selengkapnya</Link>
+                <h3 className="font-quantico text-lg font-bold mb-2">{article.title}</h3>
+                <p className="font-quantico text-sm text-white">{article.summary}</p>
+                <Link to={article.link} className="font-quantico text-red-400 font-semibold hover:underline mt-2 inline-block">Baca selengkapnya</Link>
               </div>
             </div>
           ))}
