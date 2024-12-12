@@ -6,10 +6,10 @@ import CardList from './pages/CardList';
 import Page from './pages/PageHome';
 import Footer from './pages/Footer';
 import ImageSlider from './pages/ImageSlider';
-import AllMemories from './pages/other/AllMemories'; // Halaman All Memories
-import '@fontsource/quantico'; // Default
-import '@fontsource/quantico/400.css'; // Regular
-import '@fontsource/quantico/700.css'; // Bold
+import AllMemories from './pages/other/AllMemories'; 
+import '@fontsource/quantico'; 
+import '@fontsource/quantico/400.css'; 
+import '@fontsource/quantico/700.css'; 
 import MainContent from './pages/MainContent';
 
 const App: React.FC = () => {
@@ -33,11 +33,10 @@ const App: React.FC = () => {
               </>
             }
           />
-          {/* Halaman baru untuk "Lihat Semua Kenangan" */}
           <Route path="/all-memories" element={<AllMemories />} />
         </Routes>
 
-        {/* Footer tetap tampil di semua halaman */}
+        {/* Footer*/}
         <Footer />
       </div>
     </Router>

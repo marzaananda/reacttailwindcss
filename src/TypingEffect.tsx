@@ -17,10 +17,8 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   const [displayedParagraph, setDisplayedParagraph] = useState('');
   const [isTypingHeading, setIsTypingHeading] = useState(true);
   const [charIndex, setCharIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true); // Untuk mengontrol efek blink
-
+  const [isTyping, setIsTyping] = useState(true); 
   useEffect(() => {
-    // Handle typing for heading
     if (isTypingHeading && charIndex < headingText.length) {
       const timeout = setTimeout(() => {
         setDisplayedHeading((prev) => prev + headingText[charIndex]);
@@ -28,7 +26,6 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
       }, speed);
       return () => clearTimeout(timeout);
     }
-    // Move to paragraph typing after heading is complete
     else if (isTypingHeading && charIndex === headingText.length) {
       const delayTimeout = setTimeout(() => {
         setIsTypingHeading(false);
@@ -36,7 +33,6 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
       }, delayBetweenTexts);
       return () => clearTimeout(delayTimeout);
     }
-    // Handle typing for paragraph
     else if (!isTypingHeading && charIndex < paragraphText.length) {
       const timeout = setTimeout(() => {
         setDisplayedParagraph((prev) => prev + paragraphText[charIndex]);
@@ -44,7 +40,6 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
       }, speed);
       return () => clearTimeout(timeout);
     } else if (!isTypingHeading && charIndex === paragraphText.length) {
-      // Setelah selesai mengetik semua teks, hilangkan efek kursor
       setIsTyping(false);
     }
   }, [charIndex, isTypingHeading, headingText, paragraphText, speed, delayBetweenTexts]);

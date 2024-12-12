@@ -43,7 +43,7 @@ const LazyVideo: React.FC<LazyVideoProps> = ({ videoSrc, videoId, className }) =
       loop
       playsInline
       preload="auto"
-      controls={false} // Opsional, jika Anda tidak ingin kontrol video.
+      controls={false}
     >
       {isVisible && <source src={videoSrc} type="video/mp4" />}
       Your browser does not support the video tag.

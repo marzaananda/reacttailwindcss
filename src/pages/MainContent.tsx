@@ -15,10 +15,9 @@ const MainContent: React.FC = () => {
 
   return (
     <div id='MainContent' className="relative h-screen w-full">
-      {/* Video Background */}
       <LazyVideo
       videoId="navbarVideo"
-      videoSrc="/vid01.mp4"  // Menggunakan path relatif dari folder public
+      videoSrc="/vid01.mp4"  
       className="absolute inset-0 w-full h-full object-cover z-0"
         />
 

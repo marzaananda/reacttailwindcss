@@ -37,9 +37,9 @@ const PageHome: React.FC = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
       style={{
-        backgroundImage: "url('./_MG_4692 1.png')", // Ganti dengan URL gambar Anda
+        backgroundImage: "url('./_MG_4692 1.png')", 
         backgroundPosition: "center",
-        backgroundSize: "cover", // Pastikan gambar memenuhi container
+        backgroundSize: "cover", 
       }}
     >
       <div className="absolute inset-0 bg-black opacity-40"></div>
@@ -47,11 +47,11 @@ const PageHome: React.FC = () => {
       <motion.div
         className="relative z-10 text-left text-white px-4 md:px-12 flex flex-col justify-center h-full"
         initial="initial"
-        animate={inView ? "animate" : "initial"} // Menambahkan animasi saat di-scroll
+        animate={inView ? "animate" : "initial"} 
         variants={staggeredVariants}
       >
         <motion.h1
-  className="text-3xl md:text-5xl font-bold font-quantico mb-2" // Margin bawah diperpendek
+  className="text-3xl md:text-5xl font-bold font-quantico mb-2" 
   initial={{ opacity: 0, x: -50 }}
   animate={{ opacity: 1, x: 0 }}
   transition={{ duration: 1 }}
@@ -67,7 +67,7 @@ const PageHome: React.FC = () => {
   transition={{ duration: 1.5 }}
 >
   <motion.p
-    className="text-sm md:text-xl text-white-800 font-quantico mt-0" // Margin atas diatur
+    className="text-sm md:text-xl text-white-800 font-quantico mt-0"
     initial={{ opacity: 0, x: -50 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 2 }}

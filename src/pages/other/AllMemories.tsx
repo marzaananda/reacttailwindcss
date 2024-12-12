@@ -13,10 +13,8 @@ interface Article {
 const AllMemories: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
 
-  // Mengambil data artikel, bisa diganti dengan API atau database
   useEffect(() => {
     const fetchArticles = async () => {
-      // Data dummy untuk sekarang, ganti dengan data nyata
       const fetchedArticles = [
         {
           id: 1,

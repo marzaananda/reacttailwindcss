@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {/* Menu button for mobile */}
+        {/* Menu*/}
         <div className="sm:hidden">
           <button
             onClick={toggleMenu}
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Navbar links for desktop */}
+        {/* Navbar */}
         <div className="hidden sm:flex space-x-4">
           <button
             onClick={() => scrollToSection("MainContent")}

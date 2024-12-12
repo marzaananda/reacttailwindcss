@@ -1,7 +1,7 @@
 import React from "react";
 
 interface CardProps {
-  image: string; // Properti gambar
+  image: string; 
   title: string;
   category: string;
   date: string;
