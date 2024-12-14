@@ -21,42 +21,42 @@ const AllMemories: React.FC = () => {
         {
           id: 1,
           title: 'Praktik Kimia XI IPA 1',
-          imageUrl: '/img/IMG_(1).jpg', // Perbaiki path
+          imageUrl: '/img/IMG_1.jpg', // Perbaiki path
           summary: 'Eksperimen kimia seru bersama teman-teman.',
           link: '/memory/1',
         },
         {
           id: 2,
           title: 'Study Tour ke Candi Prambanan',
-          imageUrl: '/img/IMG_(2).jpg', // Perbaiki path
+          imageUrl: '/img/IMG_2.jpg', // Perbaiki path
           summary: 'Perjalanan edukatif yang menyenangkan.',
           link: '/memory/2',
         },
         {
           id: 3,
           title: 'Study Tour ke Bali',
-          imageUrl: '/img/IMG_(3).jpg', // Perbaiki path
+          imageUrl: '/img/IMG_3.jpg', // Perbaiki path
           summary: 'Liburan seru bersama teman-teman ke Bali.',
           link: '/memory/3',
         },
         {
           id: 4,
           title: 'Manasik Haji 2023',
-          imageUrl: '/img/IMG_(4).jpg', // Perbaiki path
+          imageUrl: '/img/IMG_4.jpg', // Perbaiki path
           summary: 'Kegiatan manasik yang mengajarkan makna ibadah.',
           link: '/memory/4',
         },
         {
           id: 5,
           title: 'Pentas Seni 2023',
-          imageUrl: '/img/IMG_(5).jpg', // Perbaiki path
+          imageUrl: '/img/IMG_5.jpg', // Perbaiki path
           summary: 'Penampilan seni yang memukau.',
           link: '/memory/5',
         },
         {
           id: 6,
           title: 'Hari Olahraga Sekolah',
-          imageUrl: '/img/IMG_(6).jpg', // Perbaiki path
+          imageUrl: '/img/IMG_6.jpg', // Perbaiki path
           summary: 'Kompetisi olahraga seru antar kelas.',
           link: '/memory/6',
         },
