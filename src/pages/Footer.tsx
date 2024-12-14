@@ -13,13 +13,13 @@ const Footer: React.FC = () => {
 
         {/* Social Icons Section */}
         <div className="flex space-x-4">
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.youtube.com/@ExposeOne-1" target="_blank" rel="noopener noreferrer">
             <FaYoutube className="w-6 h-6 text-black hover:text-gray-600 transition-colors" />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/marzaananda/reacttailwindcss" target="_blank" rel="noopener noreferrer">
             <FaGithub className="w-6 h-6 text-black hover:text-gray-600 transition-colors" />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/expos1_class/" target="_blank" rel="noopener noreferrer">
             <FaInstagram className="w-6 h-6 text-black hover:text-gray-600 transition-colors" />
           </a>
         </div>
