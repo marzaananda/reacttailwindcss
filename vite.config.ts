@@ -1,12 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { viteStaticCopy } from 'vite-plugin-static-copy'; // Tambahkan plugin static copy
 
 // https://vitejs.dev/config/
 export default defineConfig({
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg'],
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'public/img', // Folder sumber gambar di public/img
+          dest: 'img',       // Tujuan di dalam dist/img
+        },
+      ],
+    }),
+  ],
   build: {
-    outDir: 'dist', // Pastikan output ke folder 'dist'
+    outDir: 'dist', // Output ke folder 'dist'
     rollupOptions: {
       output: {
         manualChunks: undefined, // Jika tidak ingin chunk manual
@@ -15,9 +26,8 @@ export default defineConfig({
   },
   server: {
     headers: {
-      "Cache-Control": "public, max-age=31536000, immutable", // Cache-control header untuk assets
+      "Cache-Control": "public, max-age=31536000, immutable", // Header cache-control untuk aset
     },
   },
-  // Jika kamu menggunakan sub-path atau deployment path lain di Vercel, misalnya: /my-app/
-  base: '/',
+  base: '/', // Base URL di Vercel (root)
 });

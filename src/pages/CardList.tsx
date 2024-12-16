@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "./Card";
 import { Link } from 'react-router-dom';
-import image1 from "../components/img/IMG_2.jpg";
-import image2 from "../components/img/IMG_4.jpg";
-import image3 from "../components/img/IMG_3.jpg";
-import image4 from "../components/img/IMG_5.jpg";
+import image1 from "/img/IMG_2.jpg";
+import image2 from "/img/IMG_4.jpg";
+import image3 from "/img/IMG_5.jpg";
+import image4 from "/img/IMG_6.jpg";
 
 const cardData = [
   {
