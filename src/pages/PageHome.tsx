@@ -75,7 +75,7 @@ const PageHome: React.FC = () => {
     Suasana kelas yang dulu penuh canda tawa kini terasa hening; meja-meja yang
     pernah menjadi saksi cerita, tumpukan tugas, dan diskusi hangat kini
     teringat kosong, menyisakan bayangan kenangan indah saat kebersamaan menjadi
-    bagian dari rutinitas yang takkan terulang lagi.
+    bagian dari rutinitas yang takkan terulang lagi. :(
   </motion.p>
 </motion.div>
 
