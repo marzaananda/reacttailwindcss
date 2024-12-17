@@ -36,7 +36,7 @@ const AllMemories: React.FC = () => {
           id: 3,
           title: 'Hari batik sebelum berangkat study tour',
           imageUrl: '/img/IMG_3.jpg',
-          summary: 'aku tidak tahu ini bagaimana menjelaskan nya akan tetapi banyak hal yang terjadi di hari itu karena mereka menyiapkan diri untuk study tour  ',
+          summary: 'aku tidak tahu bagaimana menjelaskan nya akan tetapi banyak hal yang terjadi di hari itu karena mereka menyiapkan diri untuk study tour  ',
           link: '/memory/3',
         },
         {

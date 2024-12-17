@@ -8,32 +8,37 @@ import image4 from "/img/IMG_6.jpg";
 
 const cardData = [
   {
-    image: image1, // Menggunakan gambar lokal
+    image: image1, 
     title: "PRAKTEK KIMIA XI IPA 1",
     category: "Kimia",
     date: "Agustus 2022",
-    description: "beritahu saya jika punya deskripsi",
+    description: "Beritahu saya jika punya deskripsi",
+    link: '/memory/kimia', // Menambahkan properti link
   },
   {
-    image: image2, // Menggunakan gambar lokal
+    image: image2, 
     title: "STUDY TOUR 2022",
     category: "Candi Prambanan",
     date: "5 Oktober 2022",
     description: "Beritahu saya jika punya deskripsi",
+    link: '/memory/study-tour', // Properti link ditambahkan
   },
   {
-    image: image3, // Menggunakan gambar lokal
+    image: image3, 
     title: "STUDY TOUR 2022",
     category: "Candi Prambanan",
     date: "5 Oktober 2022",
     description: "Beritahu saya jika punya deskripsi",
+    link: '/memory/study-tour', // Properti link ditambahkan
+
   },
   {
-    image: image4, // Menggunakan gambar lokal
+    image: image4,
     title: "Praktik Manasik Haji 2023",
     category: "Manasik Haji",
     date: "14 Agustus 2023",
     description: "Beritahu saya jika punya deskripsi",
+    link: '/memory/manasik-haji', // Properti link ditambahkan
   },
 ];
 
@@ -45,9 +50,9 @@ const CardList: React.FC = () => {
         <div className="flex justify-between items-center mb-6">
           <h2 className="font-quantico text-2xl font-bold">KENANGAN TERBARU</h2>
           <Link to="/all-memories">
-          <button className="font-quantico px-4 py-2 text-sm text-black hover:bg-red-600 rounded-lg transition">
-            Lihat Semua kenangan
-          </button>
+            <button className="font-quantico px-4 py-2 text-sm text-black hover:bg-red-600 rounded-lg transition">
+              Lihat Semua Kenangan
+            </button>
           </Link>
         </div>
         {/* Card Section */}
@@ -60,6 +65,7 @@ const CardList: React.FC = () => {
               category={card.category}
               date={card.date}
               description={card.description}
+              link={card.link} // Properti link dilewatkan ke komponen Card
             />
           ))}
         </div>

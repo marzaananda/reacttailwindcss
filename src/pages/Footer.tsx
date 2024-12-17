@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center px-4">
         {/* Logo Section */}
         <div className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="h-12" /> {/* Ganti dengan path logo kamu */}
+          <img src="/logof.png" alt="Logo" className="h-12" /> {/* Ganti dengan path logo kamu */}
           <h1 className="font-quantico p-2 font-bold ml-2 text-lg">EXPOSE ONE</h1>
         </div>
 
