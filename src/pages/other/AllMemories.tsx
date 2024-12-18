@@ -91,11 +91,6 @@ const AllMemories: React.FC = () => {
           <h2 className="font-quantico text-2xl md:text-3xl font-bold mb-8">
             Berita Populer
           </h2>
-          <Link to="/all-memories">
-            <button className="font-quantico px-4 py-2 text-sm text-black bg-red rounded-lg hover:bg-red-700 transition">
-              Lihat Semua Kenangan
-            </button>
-          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
