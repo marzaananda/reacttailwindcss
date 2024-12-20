@@ -1,6 +1,6 @@
 import React from "react";
-import topImage from "/img/IMG_6.jpg";
-import bottomImage from "/img/IMG_6.jpg";
+import topImage from "/img/poto1.jpg";
+import bottomImage from "/img/poto2.jpg";
 
 const MemoryArticle: React.FC = () => {
   return (
