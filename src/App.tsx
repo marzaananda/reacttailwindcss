@@ -6,11 +6,13 @@ import CardList from './pages/CardList';
 import Page from './pages/PageHome';
 import Footer from './pages/Footer';
 import ImageSlider from './pages/ImageSlider';
-import AllMemories from './pages/other/AllMemories'; 
-import '@fontsource/quantico'; 
-import '@fontsource/quantico/400.css'; 
-import '@fontsource/quantico/700.css'; 
+import AllMemories from './pages/other/AllMemories';
 import MainContent from './pages/MainContent';
+
+// Import halaman detail memori
+import Kimia from './pages/MemoryDetail/Kimia';
+import StudyTour from './pages/MemoryDetail/StudyTour';
+import ManasikHaji from './pages/MemoryDetail/ManasikHaji';
 
 const App: React.FC = () => {
   return (
@@ -34,9 +36,14 @@ const App: React.FC = () => {
             }
           />
           <Route path="/all-memories" element={<AllMemories />} />
+
+          {/* Halaman detail untuk memori */}
+          <Route path="/memory/kimia" element={<Kimia />} />
+          <Route path="/memory/study-tour" element={<StudyTour />} />
+          <Route path="/memory/manasik-haji" element={<ManasikHaji />} />
         </Routes>
 
-        {/* Footer*/}
+        {/* Footer */}
         <Footer />
       </div>
     </Router>

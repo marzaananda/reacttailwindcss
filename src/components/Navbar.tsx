@@ -1,18 +1,24 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation(); // Untuk mendapatkan lokasi saat ini
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleScrollOrNavigate = (path: string, id?: string) => {
+    if (location.pathname === path && id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
     }
+    // Jika tidak berada di halaman yang sama, navigasi ke halaman
+    window.location.href = path;
   };
 
   return (
@@ -24,12 +30,9 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {/* Menu*/}
+        {/* Menu */}
         <div className="sm:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-white focus:outline-none"
-          >
+          <button onClick={toggleMenu} className="text-white focus:outline-none">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -54,19 +57,19 @@ const Navbar: React.FC = () => {
         {/* Navbar */}
         <div className="hidden sm:flex space-x-4">
           <button
-            onClick={() => scrollToSection("MainContent")}
+            onClick={() => handleScrollOrNavigate("/", "MainContent")}
             className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
           >
             Home
           </button>
           <button
-            onClick={() => scrollToSection("memori")}
+            onClick={() => handleScrollOrNavigate("/", "memori")}
             className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
           >
             Memori
           </button>
           <button
-            onClick={() => scrollToSection("page-home")}
+            onClick={() => handleScrollOrNavigate("/", "page-home")}
             className="font-quantico text-lg text-white py-3 px-7 transition transform hover:scale-105 hover:bg-gray-400 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
           >
             About
@@ -79,7 +82,7 @@ const Navbar: React.FC = () => {
         <div className="sm:hidden absolute top-16 right-6 bg-gray-800 bg-opacity-90 rounded-md shadow-lg py-2">
           <button
             onClick={() => {
-              scrollToSection("MainContent");
+              handleScrollOrNavigate("/", "MainContent");
               toggleMenu();
             }}
             className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
@@ -88,7 +91,7 @@ const Navbar: React.FC = () => {
           </button>
           <button
             onClick={() => {
-              scrollToSection("memori");
+              handleScrollOrNavigate("/", "memori");
               toggleMenu();
             }}
             className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
@@ -97,7 +100,7 @@ const Navbar: React.FC = () => {
           </button>
           <button
             onClick={() => {
-              scrollToSection("page-home");
+              handleScrollOrNavigate("/", "page-home");
               toggleMenu();
             }}
             className="font-quantico block px-7 py-3 text-white hover:bg-gray-700 rounded"
