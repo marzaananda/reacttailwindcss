@@ -41,6 +41,7 @@ const App: React.FC = () => {
           <Route path="/memory/kimia" element={<Kimia />} />
           <Route path="/memory/study-tour" element={<StudyTour />} />
           <Route path="/memory/manasik-haji" element={<ManasikHaji />} />
+
         </Routes>
 
         {/* Footer */}

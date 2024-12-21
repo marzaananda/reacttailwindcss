@@ -38,7 +38,7 @@ const cardData = [
     category: "Manasik Haji",
     date: "14 Agustus 2023",
     description: "Beritahu saya jika punya deskripsi",
-    link: '/memory/manasik-haji', // Properti link ditambahkan
+    link: '/memory/newslist', // Properti link ditambahkan
   },
 ];
 
