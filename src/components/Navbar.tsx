@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import LoginModal from "./LoginModal"; // Import komponen LoginModal
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation(); // Untuk mendapatkan lokasi saat ini
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // State untuk modal login
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,7 +19,6 @@ const Navbar: React.FC = () => {
         return;
       }
     }
-    // Jika tidak berada di halaman yang sama, navigasi ke halaman
     window.location.href = path;
   };
 
@@ -74,6 +75,12 @@ const Navbar: React.FC = () => {
           >
             About
           </button>
+          <button
+            onClick={() => setIsLoginModalOpen(true)} // Buka modal login
+            className="font-quantico text-lg text-white py-3 px-7 bg-black transition transform hover:scale-105 hover:bg-gray-500 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
+          >
+            Login
+          </button>
         </div>
       </div>
 
@@ -108,6 +115,11 @@ const Navbar: React.FC = () => {
             About
           </button>
         </div>
+      )}
+
+      {/* Modal Login */}
+      {isLoginModalOpen && (
+        <LoginModal onClose={() => setIsLoginModalOpen(false)} />
       )}
     </nav>
   );
