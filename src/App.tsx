@@ -8,6 +8,7 @@ import Footer from './pages/Footer';
 import ImageSlider from './pages/ImageSlider';
 import AllMemories from './pages/other/AllMemories';
 import MainContent from './pages/MainContent';
+import FloatingButton from "./components/FloatingButton"; // Pastikan path sesuai
 
 // Import halaman detail memori
 import Kimia from './pages/MemoryDetail/Kimia';
@@ -41,8 +42,10 @@ const App: React.FC = () => {
           <Route path="/memory/kimia" element={<Kimia />} />
           <Route path="/memory/study-tour" element={<StudyTour />} />
           <Route path="/memory/manasik-haji" element={<ManasikHaji />} />
-
         </Routes>
+
+        {/* Floating button */}
+        <FloatingButton />
 
         {/* Footer */}
         <Footer />
