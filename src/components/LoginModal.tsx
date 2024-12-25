@@ -7,47 +7,43 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur">
-      <div className="bg-white p-8 rounded shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
+      <div className="bg-gray-200 p-8 rounded shadow-lg w-96 relative">
+        <h2 className="font-quantico text-6xl font-bold mb-6 text-center text-black drop-shadow-lg">Welcome</h2>
         <form>
           <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
             <input
-              type="email"
-              id="email"
-              className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+              type="text"
+              placeholder="Username/Email"
+              className="font-quantico w-full px-4 py-2 border rounded shadow-inner focus:outline-none focus:ring-2 focus:ring-gray-400 placeholder-gray-500"
             />
           </div>
-          <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
+          <div className="mb-6">
             <input
               type="password"
-              id="password"
-              className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+              placeholder="Password"
+              className="font-quantico w-full px-4 py-2 border rounded shadow-inner focus:outline-none focus:ring-2 focus:ring-gray-400 placeholder-gray-500"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300"
-          >
-            Login
-          </button>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              className="font-quantico px-4 py-2 bg-gray-700 text-white rounded shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            >
+              Register
+            </button>
+            <button
+              type="submit"
+              className="font-quantico px-4 py-2 bg-gray-700 text-white rounded shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            >
+              Log In
+            </button>
+          </div>
         </form>
         <button
           onClick={onClose}
-          className="mt-4 w-full py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300"
+          className="font-quantico absolute top-2 right-2 text-gray-600 hover:text-gray-800 focus:outline-none"
         >
-          Close
+          <span className="text-2xl font-bold drop-shadow-lg">&times;</span>
         </button>
       </div>
     </div>
