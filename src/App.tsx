@@ -9,6 +9,8 @@ import ImageSlider from './pages/ImageSlider';
 import AllMemories from './pages/other/AllMemories';
 import MainContent from './pages/MainContent';
 import FloatingButton from "./components/FloatingButton"; // Pastikan path sesuai
+import PostModal from "./pages/post/PostModal";
+
 
 // Import halaman detail memori
 import Kimia from './pages/MemoryDetail/Kimia';
