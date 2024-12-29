@@ -1,19 +1,21 @@
 /** @type {import('tailwindcss').Config} */
+import lineClamp from "@tailwindcss/line-clamp";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
         red: {
-          500: '#FF4655', // Warna merah Valorant
+          500: '#FF4655',
           600: '#E83B46',
         },
       },
       fontFamily: {
-        nunito: ['Nunito', 'sans-serif'], // Tetap ada
-        quantico: ['Quantico', 'sans-serif'], // Tambahkan Quantico
+        nunito: ['Nunito', 'sans-serif'],
+        quantico: ['Quantico', 'sans-serif'],
       },
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [lineClamp],
 };
