@@ -6,6 +6,8 @@ import image1 from "/img/IMG_2.jpg";
 import image2 from "/img/IMG_4.jpg";
 import image3 from "/img/IMG_5.jpg";
 import image4 from "/img/IMG_6.jpg";
+import { Link } from 'react-router-dom';
+
 
 const cardData = [
   {
@@ -44,6 +46,11 @@ const CardList: React.FC = () => {
         {/* Header Section */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="font-quantico text-2xl font-bold">KENANGAN TERBARU</h2>
+          <Link to="/all-memories">
+            <button className="font-quantico px-4 py-2 text-sm text-black hover:bg-red-600 rounded-lg transition">
+              Lihat Semua Kenangan
+            </button>
+          </Link>
         </div>
         {/* Card Section */}
         <div className="font-quantico flex flex-wrap justify-center gap-6">

@@ -72,7 +72,7 @@ const PostModal: React.FC<PostModalProps> = ({ images, title, description, date,
           <p className="font-quantico text-gray-500 text-xs mb-4">{date}</p>
 
           {/* Description with "Show more" */}
-          <div className="text-sm text-gray-600 mb-4 break-words">
+          <div className="font-quantico text-sm text-gray-600 mb-4 break-words">
             {showFullDescription ? (
               <p>{description}</p>
             ) : (
@@ -81,7 +81,7 @@ const PostModal: React.FC<PostModalProps> = ({ images, title, description, date,
             {description.length > 100 && (
               <button
                 onClick={toggleDescription}
-                className="text-blue-500 ml-2 hover:underline mt-2 block"
+                className="font-quantico text-blue-500 ml-2 hover:underline mt-2 block"
               >
                 {showFullDescription ? "Show less" : "Show more"}
               </button>
@@ -95,7 +95,7 @@ const PostModal: React.FC<PostModalProps> = ({ images, title, description, date,
             {/* Like Button */}
             <button
               onClick={handleLike}
-              className="flex items-center gap-2 text-gray-600 hover:text-red-600 transition"
+              className="font-quantico flex items-center gap-2 text-gray-600 hover:text-red-600 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ const PostModal: React.FC<PostModalProps> = ({ images, title, description, date,
             {/* Comment Button */}
             <button
               onClick={() => alert("Comment feature coming soon!")}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition"
+              className="font-quantico flex items-center gap-2 text-gray-600 hover:text-blue-600 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@ const PostModal: React.FC<PostModalProps> = ({ images, title, description, date,
             {/* Share Button */}
             <button
               onClick={() => alert("Share feature coming soon!")}
-              className="flex items-center gap-2 text-gray-600 hover:text-green-600 transition"
+              className="font-quantico flex items-center gap-2 text-gray-600 hover:text-green-600 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
