@@ -50,21 +50,22 @@ const PostModal: React.FC<PostModalProps> = ({ images, title, description, date,
 
         {/* Swiper Section */}
         <Swiper
-          modules={[Navigation, Pagination]}
-          navigation
-          pagination={{ clickable: true }}
-          className="w-full mb-4"
-        >
-          {images.map((image, index) => (
-            <SwiperSlide key={index}>
-              <img
-                src={image}
-                alt={`Slide ${index + 1}`}
-                className="w-full max-h-[300px] md:max-h-[400px] object-contain rounded-md"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+  modules={[Navigation, Pagination]}
+  navigation
+  pagination={{ clickable: true }}
+  className="w-full mb-4"
+>
+  {images.map((image, index) => (
+    <SwiperSlide key={index}>
+      <img
+        src={image}
+        alt={`Slide ${index + 1}`}
+        className="w-full h-[300px] md:h-[400px] object-contain rounded-md p-4" 
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
 
         {/* Post Content */}
         <div className="flex-1 overflow-y-auto p-4">
