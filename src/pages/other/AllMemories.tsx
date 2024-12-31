@@ -116,7 +116,7 @@ const AllMemories: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-white rounded-lg p-6 shadow-xl w-[90%] max-w-4xl"
+            className="bg-white rounded-lg p-6 shadow-xl w-[90%] max-w-4xl max-h-[90vh] overflow-y-auto"
           >
             <button
               onClick={() => {
@@ -149,7 +149,7 @@ const AllMemories: React.FC = () => {
             <h2 className="font-quantico text-xl font-bold mb-2">
               {articles[selectedArticleIndex].title}
             </h2>
-            <p className="font-quantico text-gray-500 text-sm mb-4">
+            <p className="font-quantico text-gray-500 text-sm mb-4 overflow-hidden">
               {isExpanded
                 ? articles[selectedArticleIndex].summary
                 : `${articles[selectedArticleIndex].summary.slice(0, 150)}...`}
@@ -164,6 +164,26 @@ const AllMemories: React.FC = () => {
             )}
 
             {/* Tombol Interaksi */}
+            <div className="flex justify-around mt-4">
+              <button
+                onClick={() => handleLike(selectedArticleIndex)}
+                className="font-quantico flex items-center gap-2 text-gray-600 hover:text-red-600 transition"
+              >
+                ❤ {likes[selectedArticleIndex]} Like
+              </button>
+              <button
+                onClick={handleComment}
+                className="font-quantico text-gray-600 hover:text-blue-600 transition"
+              >
+                💬 Comment
+              </button>
+              <button
+                onClick={handleShare}
+                className="font-quantico text-gray-600 hover:text-green-600 transition"
+              >
+                ↗ Share
+              </button>
+            </div>
           </motion.div>
         </div>
       )}
