@@ -49,7 +49,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             <input
               type="text"
               placeholder="Username/Email"
-              className="font-quantico w-full px-3 py-2 border border-gray-400 rounded shadow-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="font-quantico w-full px-3 py-2 rounded shadow-md focus:outline-none focus:ring focus:ring-blue-300"
             />
           </motion.div>
 
@@ -62,7 +62,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             <input
               type="password"
               placeholder="Password"
-              className="font-quantico w-full px-3 py-2 border border-gray-400 rounded shadow-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="font-quantico w-full px-3 py-2  rounded shadow-md focus:outline-none focus:ring focus:ring-blue-300"
             />
           </motion.div>
 
