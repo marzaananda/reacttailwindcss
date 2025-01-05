@@ -6,7 +6,7 @@ import image4 from "/img/IMG_6.jpg";
 export const cardData = [
   {
     images: [image1, image2], // Array gambar untuk slider
-    title: "PRAKTEK KIMIA XI IPA 1",
+    title: "PRAKTEK KIMIA XI IPA 1 ",
     category: "Kimia",
     date: "Agustus 2022",
     description: "Beritahu saya jika punya deskripsi",

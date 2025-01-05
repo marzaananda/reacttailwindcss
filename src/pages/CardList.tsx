@@ -74,7 +74,7 @@ const CardList: React.FC = () => {
           onClose={() => setSelectedPost(null)}
           images={selectedPost.images}
           title={selectedPost.title}
-          description={selectedPost.description} date={""}        />
+          description={selectedPost.description} date={""} username={""} userImage={""}        />
       )}
     </div>
   );

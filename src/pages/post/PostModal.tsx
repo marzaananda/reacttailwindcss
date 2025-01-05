@@ -8,23 +8,28 @@ import "swiper/css/pagination";
 
 interface PostModalProps {
   images: string[];
+  username: string;
+  userImage: string;
   title: string;
   description: string;
   date: string;
   onClose: () => void;
 }
 
-const PostModal: React.FC<PostModalProps> = ({ images, title, description, date, onClose }) => {
+const PostModal: React.FC<PostModalProps> = ({
+  images,
+  username,
+  userImage,
+  title,
+  description,
+  date,
+  onClose,
+}) => {
   const [likes, setLikes] = useState(0);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  const handleLike = () => setLikes((prev) => prev + 1);
+  const maxDescriptionLength = 100; // Maksimal karakter deskripsi sebelum dipotong
 
-  const toggleDescription = () => {
-    setShowFullDescription((prev) => !prev);
-  };
-
-  // Prevent page scrolling when modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -32,136 +37,121 @@ const PostModal: React.FC<PostModalProps> = ({ images, title, description, date,
     };
   }, []);
 
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-white rounded-lg shadow-xl w-[90%] max-w-4xl max-h-[90vh] flex flex-col"
-      >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 z-50"
-        >
-          ✖
-        </button>
-
-        {/* Swiper Section */}
-        <Swiper
-  modules={[Navigation, Pagination]}
-  navigation
-  pagination={{ clickable: true }}
-  className="w-full mb-4"
->
-  {images.map((image, index) => (
-    <SwiperSlide key={index}>
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 0.9 }}
+    className="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-screen overflow-y-auto"
+  >
+    {/* Header */}
+    <div className="flex items-center p-4 border-b">
       <img
-        src={image}
-        alt={`Slide ${index + 1}`}
-        className="w-full h-[300px] md:h-[400px] object-contain rounded-md p-4" 
+        src={userImage}
+        alt={username}
+        className="w-10 h-10 rounded-full mr-3"
       />
-    </SwiperSlide>
-  ))}
-</Swiper>
-
-
-        {/* Post Content */}
-        <div className="flex-1 overflow-y-auto p-4">
-          <h2 className="font-quantico text-xl font-bold mb-2">{title}</h2>
-          <p className="font-quantico text-gray-500 text-xs mb-4">{date}</p>
-
-          {/* Description with "Show more" */}
-          <div className="font-quantico text-sm text-gray-600 mb-4 break-words">
-            {showFullDescription ? (
-              <p>{description}</p>
-            ) : (
-              <p>{`${description.slice(0, 100)}...`}</p>
-            )}
-            {description.length > 100 && (
-              <button
-                onClick={toggleDescription}
-                className="font-quantico text-blue-500 ml-2 hover:underline mt-2 block"
-              >
-                {showFullDescription ? "Show less" : "Show more"}
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Interaction Buttons */}
-        <div className="sticky bottom-0 bg-white p-4 shadow-md">
-          <div className="flex justify-around">
-            {/* Like Button */}
-            <button
-              onClick={handleLike}
-              className="font-quantico flex items-center gap-2 text-gray-600 hover:text-red-600 transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
-                fill={likes > 0 ? "currentColor" : "none"}
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 15l7-7 7 7"
-                />
-              </svg>
-              <span>{likes} Like{likes === 1 ? "" : "s"}</span>
-            </button>
-
-            {/* Comment Button */}
-            <button
-              onClick={() => alert("Comment feature coming soon!")}
-              className="font-quantico flex items-center gap-2 text-gray-600 hover:text-blue-600 transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8 10h8M8 14h4m-6 4h14m-14-8h14"
-                />
-              </svg>
-              <span>Comment</span>
-            </button>
-
-            {/* Share Button */}
-            <button
-              onClick={() => alert("Share feature coming soon!")}
-              className="font-quantico flex items-center gap-2 text-gray-600 hover:text-green-600 transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16 10l5-5m0 0l-5-5m5 5H5m6 5l-5 5m0 0l5 5m-5-5h16"
-                />
-              </svg>
-              <span>Share</span>
-            </button>
-          </div>
-        </div>
-      </motion.div>
+      <div>
+        <p className="font-bold text-sm">{username}</p>
+        <p className="text-xs text-gray-500">{date}</p>
+      </div>
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={onClose}
+        className="ml-auto text-gray-500 hover:text-gray-800"
+      >
+        ✖
+      </motion.button>
     </div>
+
+    {/* Image Section */}
+    <Swiper
+      modules={[Navigation, Pagination]}
+      navigation
+      pagination={{ clickable: true }}
+      className="w-full"
+    >
+      {images.map((image, index) => (
+        <SwiperSlide key={index}>
+          <motion.img
+            src={image}
+            alt={`Slide ${index + 1}`}
+            className="w-full object-cover"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+
+    {/* Footer */}
+    <div className="p-4">
+      <div className="flex items-center space-x-4 mb-4">
+        <motion.button
+          onClick={() => setLikes((prev) => prev + 1)}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          className={`text-2xl ${
+            likes > 0 ? "text-red-500" : "text-gray-500"
+          }`}
+        >
+          ❤️
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          className="text-2xl text-gray-500"
+        >
+          💬
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          className="text-2xl text-gray-500"
+        >
+          🔗
+        </motion.button>
+      </div>
+      <p className="text-sm font-bold mb-1">{likes} Likes</p>
+      <p className="text-sm">
+        <span className="font-bold">{username}:</span> {title}
+      </p>
+
+      {/* Description */}
+      <div className="mt-2">
+        <p
+          className={`text-sm text-gray-700 ${
+            showFullDescription
+              ? "whitespace-normal break-words"
+              : "whitespace-normal break-words overflow-hidden text-ellipsis"
+          }`}
+          style={{
+            display: showFullDescription ? "block" : "-webkit-box",
+            WebkitLineClamp: showFullDescription ? "unset" : 3, // Jumlah baris deskripsi jika dipotong
+            WebkitBoxOrient: "vertical",
+          }}
+        >
+          {description}
+        </p>
+        {description.length > maxDescriptionLength && (
+          <button
+            onClick={toggleDescription}
+            className="text-blue-500 text-sm mt-1"
+          >
+            {showFullDescription ? "Show less" : "More"}
+          </button>
+        )}
+      </div>
+    </div>
+  </motion.div>
+</div>
+
   );
 };
 
