@@ -1,50 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-
-interface Article {
-  id: number;
-  title: string;
-  imageUrl: string[];
-  summary: string;
-}
+import Card from "../../components/Card";
+import { fetchedArticles, Article } from "../Data/articles";
 
 const AllMemories: React.FC = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<Article[]>(fetchedArticles);
   const [selectedArticleIndex, setSelectedArticleIndex] = useState<number | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [likes, setLikes] = useState<number[]>([]);
-
-  useEffect(() => {
-    const fetchedArticles = [
-      {
-        id: 1,
-        title: "Photobook IPA 1",
-        imageUrl: ["/img/IMG_1.jpg", "/img/IMG_2.jpg", "/img/IMG_3.jpg"],
-        summary:
-          "banyak kisah yang terjadi dan akhirnya menjadi kenangan tak terlupakan. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      },
-      {
-        id: 2,
-        title: "Prakik kimia XI IPA 1",
-        imageUrl: ["/img/IMG_4.jpg", "/img/IMG_5.jpg"],
-        summary: "Pelajaran kalor mungkin...jika kalian tahu beritahu saya ok.",
-      },
-      {
-        id: 3,
-        title: "Hari batik sebelum berangkat study tour",
-        imageUrl: ["/img/IMG_6.jpg"],
-        summary: "Aku tidak tahu bagaimana menjelaskannya, tetapi banyak hal terjadi di hari itu.",
-      },
-    ];
-    setArticles(fetchedArticles);
-
-    // Set initial likes to 0 for all articles
-    setLikes(fetchedArticles.map(() => 0));
-  }, []);
+  const [likes, setLikes] = useState<number[]>(fetchedArticles.map(() => 0));
 
   const handleLike = (index: number) => {
     const updatedLikes = [...likes];
@@ -86,25 +53,14 @@ const AllMemories: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article, index) => (
-            <div
+            <Card
               key={article.id}
-              className="bg-gray-400 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
+              id={article.id}
+              title={article.title}
+              imageUrl={article.imageUrl[0]}
+              summary={article.summary}
               onClick={() => setSelectedArticleIndex(index)}
-            >
-              <img
-                src={article.imageUrl[0]}
-                alt={article.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-quantico text-lg font-bold mb-2">
-                  {article.title}
-                </h3>
-                <p className="font-quantico text-sm text-white line-clamp-3">
-                  {article.summary}
-                </p>
-              </div>
-            </div>
+            />
           ))}
         </div>
       </section>
