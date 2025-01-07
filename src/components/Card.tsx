@@ -11,7 +11,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ id, title, imageUrl, summary, onClick }) => {
   return (
     <div
-      className="bg-gray-400 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
+      className="bg-gray-400 overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
       onClick={onClick}
     >
       <img

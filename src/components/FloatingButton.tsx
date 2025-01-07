@@ -2,7 +2,7 @@ import React from 'react';
 
 const FloatingButton: React.FC = () => {
   const handleClick = () => {
-    alert('Tambah memori baru!');
+    alert('Hanya admin yang boleh mengakses tombol ini!');
   };
 
   return (

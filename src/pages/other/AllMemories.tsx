@@ -40,7 +40,7 @@ const AllMemories: React.FC = () => {
             Berita Terbaru
           </h1>
           <p className="font-quantico text-lg md:text-xl max-w-3xl">
-            Temukan informasi dan kabar terbaru yang menarik untukmu.
+            Temukan kenangan dan kabar terbaru yang menarik untukmu.
           </p>
         </div>
       </section>
@@ -72,7 +72,7 @@ const AllMemories: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-white rounded-lg p-6 shadow-xl w-[90%] max-w-4xl max-h-[90vh] overflow-y-auto"
+            className="bg-white p-6 shadow-xl w-[90%] max-w-4xl max-h-[90vh] overflow-y-auto"
           >
             <button
               onClick={() => {
