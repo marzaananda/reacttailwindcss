@@ -5,6 +5,9 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import CommentHP from "../../components/CommentHp";
+import CommentPC from "../../components/CommentPc";
+
 
 interface PostModalProps {
   images: string[];
@@ -16,15 +19,15 @@ interface PostModalProps {
   onClose: () => void;
 }
 
-const PostModal: React.FC<PostModalProps> = ({
-  images,
-  username,
-  userImage,
-  title,
-  description,
-  date,
-  onClose,
-}) => {
+
+const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,description,date,onClose,}) => {
+  const [isCommentVisible, setIsCommentVisible] = useState(false); // Untuk mengontrol komentar
+
+  const handleCommentToggle = () => {
+    setIsCommentVisible(!isCommentVisible);
+  };
+
+  const isMobile = window.innerWidth <= 768; // Deteksi perangkat mobile
   const [likes, setLikes] = useState(0);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
@@ -40,6 +43,7 @@ const PostModal: React.FC<PostModalProps> = ({
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
+  
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur">
@@ -102,6 +106,7 @@ const PostModal: React.FC<PostModalProps> = ({
               ❤️
             </motion.button>
             <motion.button
+              onClick={handleCommentToggle}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               className="text-2xl text-gray-500"
@@ -146,6 +151,15 @@ const PostModal: React.FC<PostModalProps> = ({
               </button>
             )}
           </div>
+                {/* Komentar HP */}
+      {isMobile && isCommentVisible && (
+        <CommentHP onClose={() => setIsCommentVisible(false)} isOpen={true}/>
+      )}
+
+      {/* Komentar PC */}
+      {!isMobile && isCommentVisible && (
+        <CommentPC onClose={() => setIsCommentVisible(false)} isOpen={true}/>
+      )}
         </div>
       </motion.div>
     </div>
