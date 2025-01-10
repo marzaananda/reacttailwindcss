@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CommentHp from "../components/CommentHp";
+import CommentHp from "./comments/CommentHP";
 
 
 const PostPage: React.FC = () => {

@@ -5,8 +5,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import CommentHP from "../../components/CommentHP";
-import CommentPC from "../../components/CommentPc";
+import CommentHP from "../comments/CommentHP";
+import CommentPC from "../comments/CommentPc";
 
 
 interface PostModalProps {
