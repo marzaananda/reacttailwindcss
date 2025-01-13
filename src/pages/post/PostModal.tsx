@@ -151,15 +151,14 @@ const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,
               </button>
             )}
           </div>
-                {/* Komentar HP */}
-      {isMobile && isCommentVisible && (
-        <CommentHP onClose={() => setIsCommentVisible(false)} isOpen={true}/>
-      )}
+          {isMobile && isCommentVisible && (
+  <CommentHP isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+)}
 
-      {/* Komentar PC */}
-      {!isMobile && isCommentVisible && (
-        <CommentPC onClose={() => setIsCommentVisible(false)} isOpen={true}/>
-      )}
+{!isMobile && isCommentVisible && (
+  <CommentPC isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+)}
+
         </div>
       </motion.div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 interface CommentHPProps {
@@ -7,6 +7,17 @@ interface CommentHPProps {
 }
 
 const CommentHP: React.FC<CommentHPProps> = ({ isOpen, onClose }) => {
+  const [newComment, setNewComment] = useState(""); // State untuk komentar baru
+
+  const handleCommentSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newComment.trim() !== "") {
+      // Proses pengiriman komentar
+      console.log("Komentar dikirim:", newComment);
+      setNewComment(""); // Reset input setelah dikirim
+    }
+  };
+
   return (
     <motion.div
       initial={{ y: "100%" }}
@@ -17,7 +28,7 @@ const CommentHP: React.FC<CommentHPProps> = ({ isOpen, onClose }) => {
       dragConstraints={{ top: 0, bottom: 0 }}
       onDragEnd={(event, info) => {
         if (info.offset.y > 100) {
-          onClose(); // Tutup jika di-swipe ke bawah
+          onClose();
         }
       }}
       className="fixed inset-0 z-50 bg-gray-100 rounded-t-lg shadow-lg overflow-hidden"
@@ -28,7 +39,7 @@ const CommentHP: React.FC<CommentHPProps> = ({ isOpen, onClose }) => {
       </div>
 
       {/* Daftar Komentar */}
-      <div className="p-4 overflow-y-auto max-h-[80vh]">
+      <div className="p-4 overflow-y-auto max-h-[70vh]">
         <ul>
           {Array.from({ length: 10 }).map((_, index) => (
             <li key={index} className="flex items-center gap-4 mb-4">
@@ -42,6 +53,25 @@ const CommentHP: React.FC<CommentHPProps> = ({ isOpen, onClose }) => {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Input Komentar */}
+      <div className="p-4 border-t">
+        <form onSubmit={handleCommentSubmit} className="flex items-center gap-2">
+          <input
+            type="text"
+            className="flex-grow border rounded-full px-4 py-2 text-sm"
+            placeholder="Tulis komentar..."
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+          >
+            Kirim
+          </button>
+        </form>
       </div>
     </motion.div>
   );
