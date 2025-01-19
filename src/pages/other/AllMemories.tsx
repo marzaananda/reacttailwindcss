@@ -3,15 +3,19 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import { Navigation, Pagination } from "swiper/modules";
 import Card from "../../components/Card";
 import { fetchedArticles, Article } from "../Data/articles";
+import CommentHP from "../comments/CommentHP";
+import CommentPC from "../comments/CommentPc";
 
 const AllMemories: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>(fetchedArticles);
   const [selectedArticleIndex, setSelectedArticleIndex] = useState<number | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [likes, setLikes] = useState<number[]>(fetchedArticles.map(() => 0));
+  const [isCommentVisible, setIsCommentVisible] = useState<boolean>(false);
 
   const handleLike = (index: number) => {
     const updatedLikes = [...likes];
@@ -23,9 +27,11 @@ const AllMemories: React.FC = () => {
     alert("Fitur Share belum tersedia.");
   };
 
-  const handleComment = () => {
-    alert("Fitur Comment belum tersedia.");
+  const handleCommentToggle = () => {
+    setIsCommentVisible(!isCommentVisible);
   };
+
+  const isMobile = window.innerWidth <= 768; // Deteksi perangkat mobile
 
   return (
     <div className="bg-gray-300 text-white">
@@ -78,6 +84,7 @@ const AllMemories: React.FC = () => {
               onClick={() => {
                 setSelectedArticleIndex(null);
                 setIsExpanded(false);
+                setIsCommentVisible(false);
               }}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
             >
@@ -128,7 +135,7 @@ const AllMemories: React.FC = () => {
                 ❤ {likes[selectedArticleIndex]} Like
               </button>
               <button
-                onClick={handleComment}
+                onClick={handleCommentToggle}
                 className="font-quantico text-gray-600 hover:text-blue-600 transition"
               >
                 💬 Comment
@@ -140,6 +147,14 @@ const AllMemories: React.FC = () => {
                 ↗ Share
               </button>
             </div>
+
+            {/* Komentar */}
+            {isMobile && isCommentVisible && (
+              <CommentHP isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+            )}
+            {!isMobile && isCommentVisible && (
+              <CommentPC isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+            )}
           </motion.div>
         </div>
       )}

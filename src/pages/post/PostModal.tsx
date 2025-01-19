@@ -7,12 +7,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import CommentHP from "../comments/CommentHP";
 import CommentPC from "../comments/CommentPc";
+import profileImage from "/logo.png"
 
 
 interface PostModalProps {
   images: string[];
   username: string;
-  userImage: string;
+  userImage?: string;
   title: string;
   description: string;
   date: string;
@@ -56,13 +57,13 @@ const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,
         {/* Header */}
         <div className="flex items-center p-4 border-b">
           <img
-            src={userImage}
+            src={userImage || profileImage}
             alt={username}
             className="w-10 h-10 rounded-full mr-3"
           />
           <div>
-            <p className="font-bold text-sm">{username}</p>
-            <p className="text-xs text-gray-500">{date}</p>
+            <p className="font-bold text-sm">EXPOSE{username}</p>
+            <p className="text-xs text-gray-500">1-1-1-{date}</p>
           </div>
           <motion.button
             whileHover={{ scale: 1.1 }}
