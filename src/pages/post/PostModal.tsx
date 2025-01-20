@@ -7,8 +7,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import CommentHP from "../comments/CommentHP";
 import CommentPC from "../comments/CommentPc";
-import profileImage from "/logo.png"
-
+import DropdownMenu from "../Data/DropdownMenu"; // Import DropdownMenu
+import profileImage from "/logo.png";
 
 interface PostModalProps {
   images: string[];
@@ -20,14 +20,17 @@ interface PostModalProps {
   onClose: () => void;
 }
 
-
-const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,description,date,onClose,}) => {
+const PostModal: React.FC<PostModalProps> = ({
+  images,
+  username,
+  userImage,
+  title,
+  description,
+  date,
+  onClose,
+}) => {
   const [isCommentVisible, setIsCommentVisible] = useState(false); // Untuk mengontrol komentar
-
-  const handleCommentToggle = () => {
-    setIsCommentVisible(!isCommentVisible);
-  };
-
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Untuk mengontrol dropdown
   const isMobile = window.innerWidth <= 768; // Deteksi perangkat mobile
   const [likes, setLikes] = useState(0);
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -44,10 +47,31 @@ const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
-  
+
+  const handleCommentToggle = () => {
+    setIsCommentVisible(!isCommentVisible);
+  };
+
+  const handleEdit = () => {
+    alert("Navigasi ke halaman Edit akan ditambahkan nanti.");
+    setIsDropdownOpen(false);
+  };
+
+  const handleDelete = () => {
+    alert("Navigasi ke halaman Delete akan ditambahkan nanti.");
+    setIsDropdownOpen(false);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur">
+      {/* Button Close di Luar */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 z-50"
+      >
+        ✖
+      </button>
+
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -55,7 +79,7 @@ const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,
         className="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-screen overflow-y-auto scrollbar-custom"
       >
         {/* Header */}
-        <div className="flex items-center p-4 border-b">
+        <div className="flex items-center p-4 border-b relative">
           <img
             src={userImage || profileImage}
             alt={username}
@@ -65,14 +89,30 @@ const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,
             <p className="font-bold text-sm">EXPOSE{username}</p>
             <p className="text-xs text-gray-500">1-1-1-{date}</p>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={onClose}
-            className="ml-auto text-gray-500 hover:text-gray-800"
-          >
-            ✖
-          </motion.button>
+          <div className="relative ml-auto">
+          <div className="relative ml-auto">
+  <motion.button
+    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
+    className="text-gray-500 hover:text-gray-800"
+  >
+    ⋮
+  </motion.button>
+  {isDropdownOpen && (
+    <DropdownMenu
+      isOpen={isDropdownOpen}
+      onClose={() => setIsDropdownOpen(false)}
+      options={[
+        { label: "Edit", onClick: handleEdit },
+        { label: "Delete", onClick: handleDelete },
+      ]}
+    />
+  )}
+</div>
+
+</div>
+
         </div>
 
         {/* Image Section */}
@@ -153,13 +193,12 @@ const PostModal: React.FC<PostModalProps> = ({images,username, userImage, title,
             )}
           </div>
           {isMobile && isCommentVisible && (
-  <CommentHP isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
-)}
+            <CommentHP isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+          )}
 
-{!isMobile && isCommentVisible && (
-  <CommentPC isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
-)}
-
+          {!isMobile && isCommentVisible && (
+            <CommentPC isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+          )}
         </div>
       </motion.div>
     </div>

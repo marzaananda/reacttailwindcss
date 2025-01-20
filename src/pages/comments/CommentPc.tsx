@@ -26,7 +26,7 @@ const CommentPC: React.FC<CommentPCProps> = ({ isOpen, onClose }) => {
     >
       {/* Header */}
       <div className="p-4 border-b flex justify-between items-center">
-        <h2 className="text-lg font-bold">Komentar</h2>
+        <h2 className="text-lg font-bold text-black">Komentar</h2>
         <button
           onClick={onClose}
           className="text-gray-500 hover:text-black text-lg"
