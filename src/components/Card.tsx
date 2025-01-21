@@ -11,7 +11,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ id, title, imageUrl, summary, onClick }) => {
   return (
     <div
-      className="bg-gray-400 overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
+      className="bg-white overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
       onClick={onClick}
     >
       <img
@@ -20,8 +20,8 @@ const Card: React.FC<CardProps> = ({ id, title, imageUrl, summary, onClick }) =>
         className="w-full h-48 object-cover"
       />
       <div className="p-4">
-        <h3 className="font-quantico text-lg font-bold mb-2">{title}</h3>
-        <p className="font-quantico text-sm text-white line-clamp-3">{summary}</p>
+        <h3 className="font-quantico text-lg font-bold mb-2 text-gray-800">{title}</h3>
+        <p className="font-quantico text-sm line-clamp-3 text-gray-600">{summary}</p>
       </div>
     </div>
   );

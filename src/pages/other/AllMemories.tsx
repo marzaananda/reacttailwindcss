@@ -9,6 +9,7 @@ import Card from "../../components/Card";
 import { fetchedArticles, Article } from "../Data/articles";
 import CommentHP from "../comments/CommentHP";
 import CommentPC from "../comments/CommentPc";
+import DropdownMenu from "../Data/DropdownMenu";
 
 const AllMemories: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>(fetchedArticles);
@@ -16,6 +17,7 @@ const AllMemories: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [likes, setLikes] = useState<number[]>(fetchedArticles.map(() => 0));
   const [isCommentVisible, setIsCommentVisible] = useState<boolean>(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const handleLike = (index: number) => {
     const updatedLikes = [...likes];
@@ -31,10 +33,20 @@ const AllMemories: React.FC = () => {
     setIsCommentVisible(!isCommentVisible);
   };
 
+  const handleEdit = () => {
+    alert("Navigasi ke halaman Edit akan ditambahkan nanti.");
+    setIsDropdownOpen(false);
+  };
+
+  const handleDelete = () => {
+    alert("Navigasi ke halaman Delete akan ditambahkan nanti.");
+    setIsDropdownOpen(false);
+  };
+
   const isMobile = window.innerWidth <= 768; // Deteksi perangkat mobile
 
   return (
-    <div className="bg-gray-300 text-white">
+    <div className="bg-gray-100">
       {/* Hero Section */}
       <section
         className="relative h-[500px] bg-cover bg-center"
@@ -42,10 +54,10 @@ const AllMemories: React.FC = () => {
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="relative z-10 flex flex-col justify-center text-left h-full px-4">
-          <h1 className="font-quantico text-4xl md:text-6xl font-bold mb-4">
+          <h1 className="text-white font-quantico text-4xl md:text-6xl font-bold mb-4">
             Berita Terbaru
           </h1>
-          <p className="font-quantico text-lg md:text-xl max-w-3xl">
+          <p className="text-white font-quantico text-lg md:text-xl max-w-3xl">
             Temukan kenangan dan kabar terbaru yang menarik untukmu.
           </p>
         </div>
@@ -90,6 +102,24 @@ const AllMemories: React.FC = () => {
             >
               ✖
             </button>
+
+            {/* Dropdown Menu Button */}
+            <div className="absolute top-2 right-10">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="text-gray-500 hover:text-gray-800"
+              >
+                ⚙
+              </button>
+              <DropdownMenu
+                isOpen={isDropdownOpen}
+                onClose={() => setIsDropdownOpen(false)}
+                options={[
+                  { label: "Edit", onClick: handleEdit },
+                  { label: "Delete", onClick: handleDelete },
+                ]}
+              />
+            </div>
 
             {/* Swiper */}
             <Swiper
