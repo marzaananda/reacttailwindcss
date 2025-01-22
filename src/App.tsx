@@ -10,6 +10,8 @@ import AllMemories from './pages/other/AllMemories';
 import MainContent from './pages/MainContent';
 import FloatingButton from "./components/FloatingButton"; // Pastikan path sesuai
 import PostModal from "./pages/post/PostModal";
+import AddPostPage from './components/addPostPage/AddPostPage';
+
 
 
 // Import halaman detail memori
@@ -37,6 +39,7 @@ const App: React.FC = () => {
             }
           />
           <Route path="/all-memories" element={<AllMemories />} />
+          <Route path="/add-post" element={<AddPostPage />} />
 
           {/* Halaman detail untuk memori */}
           {/* <Route path="/memory/kimia" element={<Kimia />} />

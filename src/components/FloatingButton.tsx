@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FloatingButton: React.FC = () => {
-  const handleClick = () => {
-    alert('Hanya admin yang boleh mengakses tombol ini!');
-  };
+  const navigate = useNavigate();
 
+  const handleClick = () => {
+    // Navigasi ke halaman AddPostPage
+    navigate('/add-post');
+  }
   return (
     <button
       onClick={handleClick}
