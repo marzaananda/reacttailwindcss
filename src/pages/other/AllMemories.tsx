@@ -10,6 +10,9 @@ import { fetchedArticles, Article } from "../Data/articles";
 import CommentHP from "../comments/CommentHP";
 import CommentPC from "../comments/CommentPc";
 import DropdownMenu from "../Data/DropdownMenu";
+import AddPostPage from "../../components/addPostPage/AddPostPage";
+import { useNavigate } from "react-router-dom";
+
 
 const AllMemories: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>(fetchedArticles);
@@ -33,9 +36,11 @@ const AllMemories: React.FC = () => {
     setIsCommentVisible(!isCommentVisible);
   };
 
+  const navigate = useNavigate(); // Inisialisasi navigasi
+
   const handleEdit = () => {
-    alert("Navigasi ke halaman Edit akan ditambahkan nanti.");
-    setIsDropdownOpen(false);
+    navigate("/add-post"); // Arahkan ke halaman AddPostPage
+    setIsDropdownOpen(false); // Tutup dropdown setelah diklik
   };
 
   const handleDelete = () => {

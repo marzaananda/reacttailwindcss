@@ -8,21 +8,20 @@ import image3 from "/img/IMG_5.jpg";
 import image4 from "/img/IMG_6.jpg";
 import { Link } from 'react-router-dom';
 
-
-const cardData = [
+const initialCardData = [
   {
     images: [image1, image2], // Array gambar untuk Swiper
     title: "PRAKTEK KIMIA XI IPA 1",
     category: "Kimia",
     date: "Agustus 2022",
-    description: "Beritahu saya jika punya deskripsi//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////",
+    description: "Beritahu saya jika punya deskripsi",
   },
   {
     images: [image3],
     title: "STUDY TOUR 2022",
     category: "Candi Prambanan",
     date: "5 Oktober 2022",
-    description: "Beritahu saya jika punya deskripsi//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////",
+    description: "Beritahu saya jika punya deskripsi",
   },
   {
     images: [image4],
@@ -34,10 +33,21 @@ const cardData = [
 ];
 
 const CardList: React.FC = () => {
+  const [cardData, setCardData] = useState(initialCardData);
   const [selectedPost, setSelectedPost] = useState<typeof cardData[0] | null>(null);
+  const [notification, setNotification] = useState<string | null>(null);
 
   const handleCardClick = (post: typeof cardData[0]) => {
     setSelectedPost(post); // Atur postingan yang dipilih
+  };
+
+  const handleDeletePost = (postTitle: string) => {
+    if (window.confirm("Apakah Anda yakin ingin menghapus postingan ini?")) {
+      setCardData((prevData) => prevData.filter((post) => post.title !== postTitle));
+      setSelectedPost(null);
+      setNotification("Postingan berhasil dihapus!");
+      setTimeout(() => setNotification(null), 3000);
+    }
   };
 
   return (
@@ -68,13 +78,25 @@ const CardList: React.FC = () => {
         </div>
       </div>
 
+      {/* Notifikasi */}
+      {notification && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+          {notification}
+        </div>
+      )}
+
       {/* Modal */}
       {selectedPost && (
         <PostModal
           onClose={() => setSelectedPost(null)}
           images={selectedPost.images}
           title={selectedPost.title}
-          description={selectedPost.description} date={""} username={""} userImage={""}        />
+          description={selectedPost.description}
+          date={selectedPost.date}
+          username=""
+          userImage=""
+          onDelete={() => handleDeletePost(selectedPost.title)}
+        />
       )}
     </div>
   );

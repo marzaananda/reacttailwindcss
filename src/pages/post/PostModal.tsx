@@ -9,6 +9,8 @@ import CommentHP from "../comments/CommentHP";
 import CommentPC from "../comments/CommentPc";
 import DropdownMenu from "../Data/DropdownMenu"; // Import DropdownMenu
 import profileImage from "/logo.png";
+import AddPostPage from "../../components/addPostPage/AddPostPage";
+import { useNavigate } from "react-router-dom";
 
 interface PostModalProps {
   images: string[];
@@ -18,6 +20,8 @@ interface PostModalProps {
   description: string;
   date: string;
   onClose: () => void;
+  onDelete: () => void; // Tambahkan ini
+
 }
 
 const PostModal: React.FC<PostModalProps> = ({
@@ -52,13 +56,16 @@ const PostModal: React.FC<PostModalProps> = ({
     setIsCommentVisible(!isCommentVisible);
   };
 
+  const navigate = useNavigate();
   const handleEdit = () => {
-    alert("Navigasi ke halaman Edit akan ditambahkan nanti.");
-    setIsDropdownOpen(false);
+    navigate("/add-post"); // Arahkan ke halaman AddPostPage
+    setIsDropdownOpen(false); // Tutup dropdown setelah diklik
   };
 
   const handleDelete = () => {
-    alert("Navigasi ke halaman Delete akan ditambahkan nanti.");
+    if (window.confirm("Apakah Anda yakin ingin menghapus postingan ini?")) {
+      onDelete(); // Pastikan ini dipanggil
+    }
     setIsDropdownOpen(false);
   };
 
@@ -206,3 +213,7 @@ const PostModal: React.FC<PostModalProps> = ({
 };
 
 export default PostModal;
+function onDelete() {
+  throw new Error("Function not implemented.");
+}
+
