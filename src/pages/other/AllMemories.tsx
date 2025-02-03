@@ -28,9 +28,22 @@ const AllMemories: React.FC = () => {
     setLikes(updatedLikes);
   };
 
-  const handleShare = () => {
-    alert("Fitur Share belum tersedia.");
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Kenangan Sekolah",
+          text: "Lihat postingan menarik ini!",
+          url: window.location.href, // Bisa diganti dengan URL spesifik postingan
+        });
+      } catch (error) {
+        console.error("Gagal membagikan:", error);
+      }
+    } else {
+      alert("Fitur berbagi tidak didukung di browser ini.");
+    }
   };
+  
 
   const handleCommentToggle = () => {
     setIsCommentVisible(!isCommentVisible);
@@ -44,7 +57,9 @@ const AllMemories: React.FC = () => {
   };
 
   const handleDelete = () => {
-    alert("Navigasi ke halaman Delete akan ditambahkan nanti.");
+    if (window.confirm("Apakah Anda yakin ingin menghapus postingan ini?")) {
+      onDelete(); // Pastikan ini dipanggil
+    }
     setIsDropdownOpen(false);
   };
 
@@ -176,7 +191,7 @@ const AllMemories: React.FC = () => {
                 💬 Comment
               </button>
               <button
-                onClick={handleShare}
+                  onClick={handleShare}
                 className="font-quantico text-gray-600 hover:text-green-600 transition"
               >
                 ↗ Share
@@ -198,3 +213,7 @@ const AllMemories: React.FC = () => {
 };
 
 export default AllMemories;
+function onDelete() {
+  throw new Error("Function not implemented.");
+}
+

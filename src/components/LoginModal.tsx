@@ -74,12 +74,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             className="flex justify-around"
           >
             <button
-              type="button"
-              className="font-quantico py-2 px-6 bg-gray-700 text-white rounded-lg shadow-lg hover:bg-gray-800 focus:ring-2 focus:ring-gray-500"
-            >
-              Register
-            </button>
-            <button
               type="submit"
               className="font-quantico py-2 px-6 bg-blue-400 text-white rounded-lg shadow-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
             >

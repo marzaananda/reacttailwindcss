@@ -69,6 +69,23 @@ const PostModal: React.FC<PostModalProps> = ({
     setIsDropdownOpen(false);
   };
 
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Kenangan Sekolah",
+          text: "Lihat postingan menarik ini!",
+          url: window.location.href, // Bisa diganti dengan URL spesifik postingan
+        });
+      } catch (error) {
+        console.error("Gagal membagikan:", error);
+      }
+    } else {
+      alert("Fitur berbagi tidak didukung di browser ini.");
+    }
+  };
+  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur">
       {/* Button Close di Luar */}
@@ -162,6 +179,7 @@ const PostModal: React.FC<PostModalProps> = ({
               💬
             </motion.button>
             <motion.button
+              onClick={handleShare}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               className="text-2xl text-gray-500"
