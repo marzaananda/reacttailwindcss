@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -11,6 +11,8 @@ import MainContent from './pages/MainContent';
 import FloatingButton from "./components/FloatingButton"; // Pastikan path sesuai
 import PostModal from "./pages/post/PostModal";
 import AddPostPage from './components/addPostPage/AddPostPage';
+import { db } from "./firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
 
 
 
@@ -18,6 +20,19 @@ import AddPostPage from './components/addPostPage/AddPostPage';
 
 
 const App: React.FC = () => {
+  const fetchData = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "OneData"));
+      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  
+      console.log("Data dari Firestore:", data); // Cek apakah data tidak kosong
+      setArticles(data); // Pastikan ini hanya dipanggil jika data valid
+    } catch (error) {
+      console.error("🔥 Error mengambil data:", error);
+    }
+  };
+  
+
   return (
     <Router>
       <div>
@@ -58,3 +73,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+function setArticles(data: { id: string; }[]) {
+  throw new Error("Function not implemented.");
+}
+
