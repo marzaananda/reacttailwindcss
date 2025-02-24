@@ -7,29 +7,10 @@ import image2 from "/img/IMG_4.jpg";
 import image3 from "/img/IMG_5.jpg";
 import image4 from "/img/IMG_6.jpg";
 import { Link } from 'react-router-dom';
+import { postData  } from "./Data/postData";
+
 
 const initialCardData = [
-  {
-    images: [image1, image2], // Array gambar untuk Swiper
-    title: "PRAKTEK KIMIA XI IPA 1",
-    category: "Kimia",
-    date: "Agustus 2022",
-    description: "Beritahu saya jika punya deskripsi",
-  },
-  {
-    images: [image3],
-    title: "STUDY TOUR 2022",
-    category: "Candi Prambanan",
-    date: "5 Oktober 2022",
-    description: "Beritahu saya jika punya deskripsi",
-  },
-  {
-    images: [image4],
-    title: "Praktik Manasik Haji 2023",
-    category: "Manasik Haji",
-    date: "14 Agustus 2023",
-    description: "Beritahu saya jika punya deskripsi",
-  },
 ];
 
 const CardList: React.FC = () => {
@@ -50,6 +31,12 @@ const CardList: React.FC = () => {
     }
   };
 
+
+
+  function openModal(post: { id: string; mainImage: string; additionalImages: string[]; title: string; category: string; date: string; description: string; }): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div id="memori" className="bg-gray-100 py-10">
       <div className="container mx-auto">
@@ -64,17 +51,18 @@ const CardList: React.FC = () => {
         </div>
         {/* Card Section */}
         <div className="font-quantico flex flex-wrap justify-center gap-6">
-          {cardData.map((card, index) => (
-            <Card
-              key={index}
-              image={card.images[0]} // Gambar pertama dari array
-              title={card.title}
-              category={card.category}
-              date={card.date}
-              description={card.description}
-              onClick={() => handleCardClick(card)} // Tambahkan onClick
-            />
-          ))}
+        {postData.map((post) => (
+  <Card
+    key={post.id}
+    image={post.mainImage}
+    title={post.title}
+    category={post.category}
+    date={post.date}
+    description={post.description}
+    onClick={() => openModal(post)}
+  />
+))}
+
         </div>
       </div>
 
@@ -87,17 +75,18 @@ const CardList: React.FC = () => {
 
       {/* Modal */}
       {selectedPost && (
-        <PostModal
-          onClose={() => setSelectedPost(null)}
-          images={selectedPost.images}
-          title={selectedPost.title}
-          description={selectedPost.description}
-          date={selectedPost.date}
-          username=""
-          userImage=""
-          onDelete={() => handleDeletePost(selectedPost.title)}
-        />
-      )}
+  <PostModal
+    onClose={() => setSelectedPost(null)}
+    images={[selectedPost.mainImage, ...selectedPost.additionalImages]}
+    title={selectedPost.title}
+    description={selectedPost.description}
+    date={selectedPost.date}
+    username="Nama Pengguna"
+    userImage="/path-to-user-image.jpg"
+    onDelete={() => handleDeletePost(selectedPost.title)}
+  />
+)}
+
     </div>
   );
 };

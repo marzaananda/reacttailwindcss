@@ -1,0 +1,38 @@
+export const postData = [
+  {
+    id: "1",
+    mainImage: "/img/IMG_2.jpg",
+    additionalImages: ["/img/IMG_4.jpg"],
+    title: "PRAKTEK KIMIA XI IPA 1",
+    category: "Kimia",
+    date: "Agustus 2022",
+    description: "Beritahu saya jika punya deskripsi",
+  },
+  {
+    id: "2",
+    mainImage: "/img/IMG_4.jpg",
+    additionalImages: ["/img/IMG_5.jpg"],
+    title: "STUDY TOUR 2022",
+    category: "Candi Prambanan",
+    date: "5 Oktober 2022",
+    description: "Beritahu saya jika punya deskripsi",
+  },
+  {
+    id: "3",
+    mainImage: "/img/IMG_5.jpg",
+    additionalImages: ["/img/IMG_6.jpg"],
+    title: "STUDY TOUR 2022",
+    category: "Candi Prambanan",
+    date: "5 Oktober 2022",
+    description: "Beritahu saya jika punya deskripsi",
+  },
+  {
+    id: "4",
+    mainImage: "/img/IMG_6.jpg",
+    additionalImages: [],
+    title: "Praktik Manasik Haji 2023",
+    category: "Manasik Haji",
+    date: "14 Agustus 2023",
+    description: "Beritahu saya jika punya deskripsi",
+  },
+];
