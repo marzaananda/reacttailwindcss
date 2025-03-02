@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import CardList from './pages/CardList';
@@ -8,63 +8,51 @@ import Footer from './pages/Footer';
 import ImageSlider from './pages/ImageSlider';
 import AllMemories from './pages/other/AllMemories';
 import MainContent from './pages/MainContent';
-import FloatingButton from "./components/FloatingButton"; // Pastikan path sesuai
+import FloatingButton from "./components/FloatingButton";
 import AddPostPage from './components/addPostPage/AddPostPage';
-import { db } from "./firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
-
-
-
-// Import halaman detail memori
-
+import { db, auth } from "./firebaseConfig";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 const App: React.FC = () => {
-  const fetchData = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "OneData"));
-      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  
-      console.log("Data dari Firestore:", data); // Cek apakah data tidak kosong
-      setArticles(data); // Pastikan ini hanya dipanggil jika data valid
-    } catch (error) {
-      console.error("🔥 Error mengambil data:", error);
-    }
-  };
-  
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const checkAdminStatus = async (user: any) => {
+      if (user) {
+        const adminRef = doc(db, "admins", "admin");
+        const adminSnap = await getDoc(adminRef);
+
+        if (adminSnap.exists() && adminSnap.data().isLoggedIn) {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } else {
+        setIsAdmin(false);
+      }
+      setLoading(false);
+    };
+
+    const unsubscribe = onAuthStateChanged(auth, checkAdminStatus);
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
 
   return (
     <Router>
       <div>
-        {/* Navbar tetap tampil di semua halaman */}
         <Navbar />
-
-        {/* Routes untuk setiap komponen */}
         <Routes>
-          {/* Halaman utama */}
-          <Route
-            path="/"
-            element={
-              <>
-                <MainContent />
-                <CardList />
-                <Page />
-                <Home />
-              </>
-            }
-          />
+          <Route path="/" element={<><MainContent /><CardList /><Page /><Home /></>} />
           <Route path="/all-memories" element={<AllMemories />} />
-          <Route path="/add-post" element={<AddPostPage />} />
-
-          {/* Halaman detail untuk memori */}
-          {/* <Route path="/memory/kimia" element={<Kimia />} />
-          <Route path="/memory/study-tour" element={<StudyTour />} />
-          <Route path="/memory/manasik-haji" element={<ManasikHaji />} /> */}
+          <Route path="/add-post" element={isAdmin ? <AddPostPage /> : <Navigate to="/" />} />
         </Routes>
-
-        {/* Floating button */}
         <FloatingButton />
-
-        {/* Footer */}
         <Footer />
       </div>
     </Router>
@@ -72,7 +60,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-function setArticles(data: { id: string; }[]) {
-  throw new Error("Function not implemented.");
-}
-

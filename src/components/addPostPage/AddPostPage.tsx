@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../../firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 const AddPostPage = () => {
   const [topic, setTopic] = useState<string>("");
@@ -6,11 +10,37 @@ const AddPostPage = () => {
   const [title, setTitle] = useState<string>("");
   const [memory, setMemory] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAdmin = async (user: any) => {
+      if (user) {
+        const adminRef = doc(db, "admins", user.uid);
+        const adminSnap = await getDoc(adminRef);
+        if (adminSnap.exists() && adminSnap.data().isAdmin) {
+          setIsAdmin(true);
+        } else {
+          navigate("/"); // Redirect ke halaman utama jika bukan admin
+        }
+      } else {
+        navigate("/"); // Redirect ke halaman utama jika belum login
+      }
+    };
+
+    // Pantau status login pengguna
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      checkAdmin(user);
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+
+  if (!isAdmin) return null; // Hindari render jika belum terverifikasi
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ topic, date, title, memory, image });
-    // Lakukan sesuatu dengan data, seperti mengirim ke API
   };
 
   return (
@@ -18,9 +48,7 @@ const AddPostPage = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
         <h1 className="text-3xl font-quantico font-bold text-center mb-6 text-gray-800">Create Your Card</h1>
 
-        {/* Form Input */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Input Topik */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Topik</label>
             <input
@@ -33,7 +61,6 @@ const AddPostPage = () => {
             />
           </div>
 
-          {/* Input Tanggal */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Tanggal</label>
             <input
@@ -45,7 +72,6 @@ const AddPostPage = () => {
             />
           </div>
 
-          {/* Input Judul */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Judul</label>
             <input
@@ -58,7 +84,6 @@ const AddPostPage = () => {
             />
           </div>
 
-          {/* Input Deskripsi Memori */}
           <div>
             <label className="block text-sm font-medium text-gray-700">What's the memory?</label>
             <textarea
@@ -71,7 +96,6 @@ const AddPostPage = () => {
             />
           </div>
 
-          {/* Input Upload Gambar */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Upload Gambar</label>
             <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -112,7 +136,6 @@ const AddPostPage = () => {
             </div>
           </div>
 
-          {/* Tombol Submit */}
           <div>
             <button
               type="submit"
