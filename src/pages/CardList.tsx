@@ -62,7 +62,8 @@ const CardList: React.FC = () => {
   const isMobile = window.innerWidth <= 768;
 
   return (
-    <div className="bg-gray-100">
+
+    <div id="memori" className="bg-gray-100">
       {/* Card List */}
       <section className="container mx-auto py-12 px-4">
         <div className="flex justify-between items-center mb-8">

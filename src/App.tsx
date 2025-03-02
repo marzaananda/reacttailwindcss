@@ -9,7 +9,6 @@ import ImageSlider from './pages/ImageSlider';
 import AllMemories from './pages/other/AllMemories';
 import MainContent from './pages/MainContent';
 import FloatingButton from "./components/FloatingButton"; // Pastikan path sesuai
-import PostModal from "./pages/post/PostModal";
 import AddPostPage from './components/addPostPage/AddPostPage';
 import { db } from "./firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
