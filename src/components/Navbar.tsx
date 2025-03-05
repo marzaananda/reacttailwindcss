@@ -1,14 +1,37 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { auth } from "../firebaseConfig"; // Import Firebase Auth
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import LoginModal from "./LoginModal"; // Import komponen LoginModal
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // State untuk modal login
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false); // State untuk cek login admin
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Cek status login admin saat komponen dimuat
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAdminLoggedIn(!!user); // Jika ada user, berarti admin login
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Logout dari Firebase
+      setIsAdminLoggedIn(false);
+      navigate("/"); // Arahkan ke halaman utama setelah logout
+    } catch (error) {
+      console.error("Logout gagal:", error);
+    }
   };
 
   const handleScrollOrNavigate = (path: string, id?: string) => {
@@ -75,12 +98,21 @@ const Navbar: React.FC = () => {
           >
             About
           </button>
-          <button
-            onClick={() => setIsLoginModalOpen(true)} // Buka modal login
-            className="font-quantico text-lg text-white py-3 px-7 bg-black transition transform hover:scale-105 hover:bg-gray-500 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
-          >
-            Login
-          </button>
+          {isAdminLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="font-quantico text-lg text-white py-3 px-7 bg-red-500 transition transform hover:scale-105 hover:bg-red-600 active:scale-95 active:bg-red-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 rounded"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => setIsLoginModalOpen(true)}
+              className="font-quantico text-lg text-white py-3 px-7 bg-black transition transform hover:scale-105 hover:bg-gray-500 active:scale-95 active:bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 rounded"
+            >
+              Login
+            </button>
+          )}
         </div>
       </div>
 
@@ -114,13 +146,32 @@ const Navbar: React.FC = () => {
           >
             About
           </button>
+          {isAdminLoggedIn ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                toggleMenu();
+              }}
+              className="font-quantico block px-7 py-3 text-white bg-red-500 hover:bg-red-600 rounded"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setIsLoginModalOpen(true);
+                toggleMenu();
+              }}
+              className="font-quantico block px-7 py-3 text-white bg-black hover:bg-gray-500 rounded"
+            >
+              Login
+            </button>
+          )}
         </div>
       )}
 
       {/* Modal Login */}
-      {isLoginModalOpen && (
-        <LoginModal onClose={() => setIsLoginModalOpen(false)} />
-      )}
+      {isLoginModalOpen && <LoginModal onClose={() => setIsLoginModalOpen(false)} />}
     </nav>
   );
 };
