@@ -11,6 +11,7 @@ import CommentHP from "./comments/CommentHP";
 import CommentPC from "./comments/CommentPc";
 import DropdownMenu from "./Data/DropdownMenu";
 import { useNavigate } from "react-router-dom";
+import { handleAdminAction } from "../utils/adminCheck";
 
 const CardList: React.FC = () => {
   const [selectedPostIndex, setSelectedPostIndex] = useState<number | null>(null);
@@ -48,16 +49,22 @@ const CardList: React.FC = () => {
   };
 
   const handleEdit = () => {
-    navigate("/add-post");
-    setIsDropdownOpen(false);
+    handleAdminAction(() => {
+      navigate("/add-post");
+      setIsDropdownOpen(false);
+    });
   };
+  
 
   const handleDelete = () => {
-    if (window.confirm("Apakah Anda yakin ingin menghapus postingan ini?")) {
-      console.log("Post dihapus");
-    }
-    setIsDropdownOpen(false);
+    handleAdminAction(() => {
+      if (window.confirm("Apakah Anda yakin ingin menghapus postingan ini?")) {
+        console.log("Post dihapus");
+      }
+      setIsDropdownOpen(false);
+    });
   };
+  
 
   const isMobile = window.innerWidth <= 768;
 
