@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { auth } from "../firebaseConfig"; // Import Firebase Auth
+import { auth, db } from "../firebaseConfig"; // Import Firebase Auth
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import LoginModal from "./LoginModal"; // Import komponen LoginModal
+import { doc, updateDoc } from "firebase/firestore";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,13 +27,30 @@ const Navbar: React.FC = () => {
 
   const handleLogout = async () => {
     try {
+      const adminRef = doc(db, "admins", "admin");
+      await updateDoc(adminRef, { isLoggedIn: true });
+  
       await signOut(auth); // Logout dari Firebase
-      setIsAdminLoggedIn(false);
+      setIsAdminLoggedIn(true);
       navigate("/"); // Arahkan ke halaman utama setelah logout
     } catch (error) {
       console.error("Logout gagal:", error);
     }
   };
+  
+  // Logout otomatis jika tab ditutup
+  useEffect(() => {
+    const handleUnload = async () => {
+      if (isAdminLoggedIn) {
+        const adminRef = doc(db, "admins", "admin");
+        await updateDoc(adminRef, { isLoggedIn: false });
+      }
+    };
+  
+    window.addEventListener("beforeunload", handleUnload);
+    return () => window.removeEventListener("beforeunload", handleUnload);
+  }, [isAdminLoggedIn]);
+  
 
   const handleScrollOrNavigate = (path: string, id?: string) => {
     if (location.pathname === path && id) {

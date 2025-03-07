@@ -16,31 +16,38 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
+  
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
+  
+      // Ambil token untuk cek custom claims
+      const token = await user.getIdTokenResult();
+      
+      if (!token.claims.admin) {
+        setError("Anda bukan admin.");
+        return;
+      }
+  
       // Cek status login admin di Firestore
       const adminRef = doc(db, "admins", "admin");
       const adminSnap = await getDoc(adminRef);
-
+  
       if (adminSnap.exists() && adminSnap.data().isLoggedIn) {
         setError("Admin sudah login di perangkat lain.");
         return;
       }
-
+  
       // Update status login admin di Firestore
-      await updateDoc(adminRef, {
-        isLoggedIn: true,
-        lastActive: new Date(),
-      });
-
-      onClose(); // Tutup modal setelah login sukses
+      await updateDoc(adminRef, { isLoggedIn: true, lastActive: new Date() });
+  
+      console.log("Admin berhasil login.");
+      onClose(); // Tutup modal login
     } catch (err) {
       setError("Email atau password salah.");
     }
   };
+  
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur">

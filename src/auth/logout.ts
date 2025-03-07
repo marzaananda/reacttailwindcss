@@ -1,19 +1,23 @@
-import { auth, db } from "../firebaseConfig";
+import { signOut } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../firebaseConfig";
 
-export const logoutAdmin = async () => {
-  try {
-    const user = auth.currentUser;
-    if (user) {
-      // Update status login di Firestore (opsional)
-      const userDoc = doc(db, "admins", user.uid);
-      await updateDoc(userDoc, { isLoggedIn: false });
+const handleLogout = async () => {
+  if (auth.currentUser) {
+    const adminRef = doc(db, "admins", "admin");
 
-      // Logout dari Firebase Auth
-      await auth.signOut();
-      console.log("Admin berhasil logout");
+    try {
+      await updateDoc(adminRef, { isLoggedIn: false }); // Reset status admin
+      await signOut(auth); // Logout dari Firebase Auth
+      setIsAdmin(false); // Update state React agar tombol berubah kembali
+      console.log("Admin logged out successfully");
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
-  } catch (error) {
-    console.error("Error saat logout:", error);
   }
 };
+
+function setIsAdmin(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+
