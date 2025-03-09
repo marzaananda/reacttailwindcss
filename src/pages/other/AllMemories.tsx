@@ -4,20 +4,26 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import Card from "../../components/Card";
-import { fetchedArticles, Article } from "../Data/articles";
+import { postData } from "../Data/postData";
 import CommentHP from "../comments/CommentHP";
 import CommentPC from "../comments/CommentPc";
 import DropdownMenu from "../Data/DropdownMenu";
+import { useNavigate } from "react-router-dom";
 
 const AllMemories: React.FC = () => {
-  const [articles, setArticles] = useState<Article[]>(fetchedArticles);
   const [selectedArticleIndex, setSelectedArticleIndex] = useState<number | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [likes, setLikes] = useState<number[]>(fetchedArticles.map(() => 0));
+  const [likes, setLikes] = useState<number[]>(postData.map(() => 0));
   const [isCommentVisible, setIsCommentVisible] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  const navigate = useNavigate(); // Inisialisasi navigasi
+
+  const openModal = (index: number) => {
+    setSelectedArticleIndex(index);
+  };
 
   const handleLike = (index: number) => {
     const updatedLikes = [...likes];
@@ -25,25 +31,41 @@ const AllMemories: React.FC = () => {
     setLikes(updatedLikes);
   };
 
-  const handleShare = () => {
-    alert("Fitur Share belum tersedia.");
-  };
-
-  const handleCommentToggle = () => {
-    setIsCommentVisible(!isCommentVisible);
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Kenangan Sekolah",
+          text: "Lihat postingan menarik ini!",
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error("Gagal membagikan:", error);
+      }
+    } else {
+      alert("Fitur berbagi tidak didukung di browser ini.");
+    }
   };
 
   const handleEdit = () => {
-    alert("Navigasi ke halaman Edit akan ditambahkan nanti.");
-    setIsDropdownOpen(false);
+    (() => {
+      navigate("/add-post");
+      setIsDropdownOpen(false);
+    });
   };
+  
 
   const handleDelete = () => {
-    alert("Navigasi ke halaman Delete akan ditambahkan nanti.");
-    setIsDropdownOpen(false);
+    (() => {
+      if (window.confirm("Apakah Anda yakin ingin menghapus postingan ini?")) {
+        console.log("Post dihapus");
+      }
+      setIsDropdownOpen(false);
+    });
   };
+  
 
-  const isMobile = window.innerWidth <= 768; // Deteksi perangkat mobile
+  const isMobile = window.innerWidth <= 768;
 
   return (
     <div className="bg-gray-100">
@@ -70,15 +92,13 @@ const AllMemories: React.FC = () => {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article, index) => (
+          {postData.map((post, index) => (
             <Card
-              key={article.id}
-              id={article.id}
-              title={article.title}
-              imageUrl={article.imageUrl[0]}
-              summary={article.summary}
-              onClick={() => setSelectedArticleIndex(index)}
-            />
+              key={post.id}
+              imageUrl={post.mainImage} // Sesuai dengan prop yang benar di CardProps
+              title={post.title}
+              summary={post.description} // Sesuai dengan prop summary di CardProps
+              onClick={() => openModal(index)} id={0}            />
           ))}
         </div>
       </section>
@@ -122,16 +142,19 @@ const AllMemories: React.FC = () => {
             </div>
 
             {/* Swiper */}
-            <Swiper
-              modules={[Pagination]}
-              pagination={{ clickable: true }}
-              className="w-full h-[400px] mb-4"
-            >
-              {articles[selectedArticleIndex].imageUrl.map((image, idx) => (
-                <SwiperSlide key={idx} className="flex items-center justify-center">
+            <Swiper modules={[Pagination]} pagination={{ clickable: true }} className="w-full h-[400px] mb-4">
+              <SwiperSlide>
+                <img
+                  src={postData[selectedArticleIndex].mainImage}
+                  alt="Main"
+                  className="w-full h-[300px] md:h-[400px] object-contain rounded-md p-4"
+                />
+              </SwiperSlide>
+              {postData[selectedArticleIndex].additionalImages.map((image, idx) => (
+                <SwiperSlide key={idx}>
                   <img
                     src={image}
-                    alt={`Slide ${idx + 1}`}
+                    alt={`Additional ${idx + 1}`}
                     className="w-full h-[300px] md:h-[400px] object-contain rounded-md p-4"
                   />
                 </SwiperSlide>
@@ -140,51 +163,41 @@ const AllMemories: React.FC = () => {
 
             {/* Konten */}
             <h2 className="font-quantico text-xl font-bold mb-2">
-              {articles[selectedArticleIndex].title}
+              {postData[selectedArticleIndex].title}
             </h2>
-            <p className="font-quantico text-gray-500 text-sm mb-4 overflow-hidden">
+            <p className="font-quantico text-gray-500 text-sm mb-4">
               {isExpanded
-                ? articles[selectedArticleIndex].summary
-                : `${articles[selectedArticleIndex].summary.slice(0, 150)}...`}
+                ? postData[selectedArticleIndex].description
+                : `${postData[selectedArticleIndex].description.slice(0, 150)}...`}
             </p>
-            {articles[selectedArticleIndex].summary.length > 150 && (
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="text-blue-500 hover:underline text-sm"
-              >
+            {postData[selectedArticleIndex].description.length > 150 && (
+              <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-500 hover:underline text-sm">
                 {isExpanded ? "Tampilkan Lebih Sedikit" : "Tampilkan Lebih Banyak"}
               </button>
             )}
 
             {/* Tombol Interaksi */}
             <div className="flex justify-around mt-4">
-              <button
-                onClick={() => handleLike(selectedArticleIndex)}
-                className="font-quantico flex items-center gap-2 text-gray-600 hover:text-red-600 transition"
-              >
+              <button onClick={() => handleLike(selectedArticleIndex)} className="flex items-center gap-2 text-gray-600 hover:text-red-600">
                 ❤ {likes[selectedArticleIndex]} Like
               </button>
-              <button
-                onClick={handleCommentToggle}
-                className="font-quantico text-gray-600 hover:text-blue-600 transition"
-              >
+              <button onClick={() => setIsCommentVisible(!isCommentVisible)} className="text-gray-600 hover:text-blue-600">
                 💬 Comment
               </button>
-              <button
-                onClick={handleShare}
-                className="font-quantico text-gray-600 hover:text-green-600 transition"
-              >
+              <button onClick={handleShare} className="text-gray-600 hover:text-green-600">
                 ↗ Share
               </button>
             </div>
 
             {/* Komentar */}
-            {isMobile && isCommentVisible && (
-              <CommentHP isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
-            )}
-            {!isMobile && isCommentVisible && (
-              <CommentPC isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
-            )}
+            {isCommentVisible && (
+  isMobile ? (
+    <CommentHP isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+  ) : (
+    <CommentPC isOpen={isCommentVisible} onClose={() => setIsCommentVisible(false)} />
+  )
+)}
+
           </motion.div>
         </div>
       )}
